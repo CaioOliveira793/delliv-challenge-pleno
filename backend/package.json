@@ -1,0 +1,71 @@
+{
+	"name": "backend-service",
+	"version": "0.1.0",
+	"description": "Backend service for the full-stack challenge",
+	"keywords": [],
+	"homepage": "https://github.com/CaioOliveira793/delliv-challenge-pleno",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/CaioOliveira793/delliv-challenge-pleno.git"
+	},
+	"bugs": {
+		"url": "https://github.com/CaioOliveira793/delliv-challenge-pleno/issues"
+	},
+	"author": "Caio Oliveira <caio.vsoliveira23@gmail.com>",
+	"license": "MIT",
+	"private": true,
+	"type": "module",
+	"source": "src/main.ts",
+	"module": "build/main.js",
+	"files": [
+		"build/main.js",
+		"build/main.js.map"
+	],
+	"scripts": {
+		"start": "node build/main.js",
+		"start:dev": "nodemon --ext ts,json --watch src --exec 'run-z clear:build build start'",
+		"build": "rollup --config rollup/dev.config.js",
+		"build:test": "rollup --config rollup/test.config.js",
+		"pretest": "run-z clear:test build:test",
+		"test": "node --test build/test/",
+		"check": "run-z check:lint,check:type",
+		"check:lint": "eslint . --ext ts,json",
+		"check:type": "tsc --noEmit",
+		"clear": "rimraf build coverage",
+		"clear:build": "rimraf build",
+		"clear:test": "rimraf build/test",
+		"clear:coverage": "rimraf coverage"
+	},
+	"devDependencies": {
+		"@rollup/plugin-typescript": "^11.1.1",
+		"@types/jsonwebtoken": "^9.0.2",
+		"@types/node": "^20.10.5",
+		"@typescript-eslint/eslint-plugin": "^6.15.0",
+		"@typescript-eslint/parser": "^6.15.0",
+		"eslint": "^8.56.0",
+		"eslint-config-prettier": "^9.1.0",
+		"eslint-plugin-prettier": "^5.1.1",
+		"glob": "^10.3.10",
+		"nodemon": "^3.0.2",
+		"rimraf": "^5.0.5",
+		"rollup": "^4.9.1",
+		"run-z": "^2.0.0",
+		"tslib": "^2.6.2",
+		"typescript": "^5.3.3"
+	},
+	"dependencies": {
+		"@fastify/cors": "^8.5.0",
+		"@nestjs/common": "^10.3.0",
+		"@nestjs/config": "^3.1.1",
+		"@nestjs/core": "^10.3.0",
+		"@nestjs/platform-fastify": "^10.3.0",
+		"argon2": "^0.31.2",
+		"date-fns": "^3.0.5",
+		"fastify": "^4.25.1",
+		"jsonwebtoken": "^9.0.2",
+		"reflect-metadata": "^0.2.1",
+		"rxjs": "^7.8.1",
+		"ulid": "^2.3.0",
+		"zod": "^3.22.4"
+	}
+}

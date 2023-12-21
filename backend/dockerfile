@@ -1,0 +1,19 @@
+FROM docker.io/library/node:20.10-bullseye-slim as development
+
+RUN apt update && apt install --no-install-recommends -y \
+	ca-certificates \
+	curl
+
+WORKDIR /home/node
+
+ENV NODE_ENV=development
+
+COPY package.json package-lock.json ./
+
+RUN pnpm fetch
+
+COPY ./ ./
+
+RUN pnpm install --frozen-lockfile
+
+CMD pnpm run start:dev

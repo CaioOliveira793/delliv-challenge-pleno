@@ -1,7 +1,19 @@
 {
   "name": "frontend",
+	"version": "0.1.0",
+	"description": "Frontend for the full-stack challenge",
+	"keywords": [],
+	"homepage": "https://github.com/CaioOliveira793/delliv-challenge-pleno",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/CaioOliveira793/delliv-challenge-pleno.git"
+	},
+	"bugs": {
+		"url": "https://github.com/CaioOliveira793/delliv-challenge-pleno/issues"
+	},
+	"author": "Caio Oliveira <caio.vsoliveira23@gmail.com>",
+	"license": "MIT",
   "private": true,
-  "version": "0.1.0",
   "type": "module",
   "scripts": {
     "start:dev": "vite",
