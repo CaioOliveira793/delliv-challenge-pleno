@@ -24,7 +24,9 @@
 	"scripts": {
 		"start": "node build/main.js",
 		"start:dev": "nodemon --ext ts,json --watch src --exec 'run-z clear:build build start'",
-		"build": "rollup --config rollup/dev.config.js",
+		"build": "run-z build:src,build:prisma",
+		"build:src": "rollup --config rollup/dev.config.js",
+		"build:prisma": "prisma generate",
 		"build:test": "rollup --config rollup/test.config.js",
 		"pretest": "run-z clear:test build:test",
 		"test": "node --test build/test/",

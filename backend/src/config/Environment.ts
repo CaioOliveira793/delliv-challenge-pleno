@@ -16,6 +16,10 @@ export interface EnvVariables {
 	 * Secret use to sign tokens
 	 */
 	TOKEN_SECRET: string;
+	/**
+	 * Database connection string
+	 */
+	DATABASE_URL: string;
 }
 
 const EnvVariablesSchema = z
