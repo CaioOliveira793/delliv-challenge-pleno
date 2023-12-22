@@ -1,4 +1,5 @@
 import { Order } from '@/module/order/entity/Order';
+import { DeliveryEvent } from '@/module/order/entity/DeliveryEvent';
 
 export interface OrderResource {
 	id: string;
@@ -19,5 +20,25 @@ export function makeOrderResource(order: Order): OrderResource {
 		customer_name: order.customer,
 		delivery_address: order.deliveryAddress,
 		status: order.status,
+	};
+}
+
+export interface DeliveryEventResource {
+	id: string;
+	created: Date;
+	creator_id: string;
+	order_id: string;
+	status: string;
+	message: string | null;
+}
+
+export function makeDeliveryEventResource(deliveryEvent: DeliveryEvent): DeliveryEventResource {
+	return {
+		id: deliveryEvent.id,
+		created: deliveryEvent.created,
+		creator_id: deliveryEvent.creatorId,
+		order_id: deliveryEvent.orderId,
+		status: deliveryEvent.status,
+		message: deliveryEvent.message,
 	};
 }
