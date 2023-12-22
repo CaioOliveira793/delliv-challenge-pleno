@@ -42,15 +42,11 @@ export class User extends Entity<UserState> {
 
 	public async makeAuthentication(
 		password: string,
-		passwordEncryptionService: PasswordEncryptionService
-	): Promise<void | UnauthorizedError> {
-		const passwordMatch = await passwordEncryptionService.compare(
-			this.state.passwordHash,
-			password
-		);
-
-		if (!passwordMatch) {
-			return new UnauthorizedError('Invalid user credential', UnauthorizedType.InvalidCredential);
+		passwordService: PasswordEncryptionService
+	): Promise<void> {
+		const match = await passwordService.compare(this.state.passwordHash, password);
+		if (!match) {
+			throw new UnauthorizedError('Invalid user credential', UnauthorizedType.InvalidCredential);
 		}
 
 		this.state.lastAuth = new Date();

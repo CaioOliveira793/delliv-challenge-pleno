@@ -34,9 +34,7 @@ export class AuthController {
 			});
 		}
 
-		const error = await user.makeAuthentication(credential.password, this.passwordEncryption);
-		if (error) throw error;
-
+		await user.makeAuthentication(credential.password, this.passwordEncryption);
 		await this.userRepository.updateLastAuth(user.id, user.lastAuth);
 
 		const token = await Token.new(user.id, this.tokenEncryption);
