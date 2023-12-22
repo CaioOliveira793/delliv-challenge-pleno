@@ -39,6 +39,7 @@ model Order {
   creator User            @relation(fields: [creator_id], references: [id])
   events  DeliveryEvent[]
 
+  @@index(type: BTree, fields: [status])
   @@map("order")
 }
 
@@ -49,7 +50,7 @@ model DeliveryEvent {
   creator_id String
   order_id   String
   status     String
-  message    String
+  message    String?
 
   creator User  @relation(fields: [creator_id], references: [id])
   order   Order @relation(fields: [order_id], references: [id])
