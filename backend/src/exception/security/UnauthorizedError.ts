@@ -2,10 +2,11 @@ import { HttpStatus } from '@nestjs/common';
 import { AppError, HttpErrorObject } from '../base/AppError';
 
 export const enum UnauthorizedType {
-	InvalidAuthorization = 'INVALID_AUTHORIZATION',
 	TokenNotPresent = 'TOKEN_NOT_PRESENT',
 	MalformattedToken = 'MALFORMATTED_TOKEN',
 	InvalidToken = 'INVALID_TOKEN',
+	InvalidCredential = 'INVALID_CREDENTIAL',
+	InvalidPassword = 'INVALID_PASSWORD',
 }
 
 export class UnauthorizedError extends AppError {

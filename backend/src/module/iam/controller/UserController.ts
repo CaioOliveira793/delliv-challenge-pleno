@@ -1,5 +1,4 @@
 import { Body, Controller, Get, HttpCode, HttpStatus, Inject, Post } from '@nestjs/common';
-import { ResourceAlreadyExists } from '@/exception/resource/ResourceAlreadyExists';
 import { CreateUserData, User } from '@/module/iam/entity/User';
 import {
 	PASSWORD_ENCRYPTION_PROVIDER,
@@ -11,10 +10,11 @@ import { AuthResponse, UserResource, makeUserResource } from '@/module/iam/dto/R
 import { USER_REPOSITORY_PROVIDER, UserRepository } from '@/module/iam/service/UserRepository';
 import { Token } from '@/module/iam/type/Token';
 import { CreateUserSchema } from '@/module/iam/validation/Schema';
-import { ResourceNotFound } from '@/exception/resource/ResourceNotFound';
 import { ReqHeader } from '@/decorator/ReqHeader';
-import { AuthTokenPipe } from '@/pipe/AuthTokenPipe';
+import { AccessTokenPipe } from '@/pipe/AccessTokenPipe';
 import { SchemaPipe } from '@/pipe/SchemaPipe';
+import { AuthService } from '../service/AuthService';
+import { ConflictError } from '@/exception/resource/ConflictError';
 
 @Controller('user')
 export class UserController {
@@ -24,7 +24,8 @@ export class UserController {
 		@Inject(TOKEN_ENCRYPTION_PROVIDER)
 		private readonly tokenEncryption: TokenEncryptionService,
 		@Inject(USER_REPOSITORY_PROVIDER)
-		private readonly userRepository: UserRepository
+		private readonly userRepository: UserRepository,
+		private readonly authService: AuthService
 	) {}
 
 	@Post()
@@ -34,13 +35,11 @@ export class UserController {
 	): Promise<AuthResponse> {
 		const existentUser = await this.userRepository.findByEmail(data.email);
 		if (existentUser) {
-			throw new ResourceAlreadyExists('Resource already exists', [
-				{
-					resource_type: 'USER',
-					key: 'email:' + data.email,
-					path: '.email',
-				},
-			]);
+			throw new ConflictError('Resource conflict error', {
+				resource_type: 'USER',
+				key: 'email:' + data.email,
+				path: '.email',
+			});
 		}
 
 		const user = await User.create(data, this.passwordEncryption);
@@ -51,22 +50,14 @@ export class UserController {
 		return { token: token.toString(), user: makeUserResource(user) };
 	}
 
+	// TODO: add route to update the user
+
 	@Get('me')
 	@HttpCode(HttpStatus.OK)
 	public async getLoggedUser(
-		@ReqHeader('authentication', AuthTokenPipe) token: Token<string>
+		@ReqHeader('authorization', AccessTokenPipe) token: Token<string>
 	): Promise<UserResource> {
-		const user = await this.userRepository.find(token.data);
-		if (!user) {
-			throw new ResourceNotFound('Resource not found', [
-				{
-					resource_type: 'USER',
-					key: 'id:' + token.data,
-					path: null,
-				},
-			]);
-		}
-
+		const user = await this.authService.getAuthenticatedUser(token);
 		return makeUserResource(user);
 	}
 }

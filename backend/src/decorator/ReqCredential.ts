@@ -1,7 +1,7 @@
 import { createParamDecorator, ExecutionContext } from '@nestjs/common';
 import { Request } from '@/http/types';
+import { UnauthorizedError, UnauthorizedType } from '@/exception/security/UnauthorizedError';
 import { UserCredentialSchema } from '@/module/iam/validation/Schema';
-import { AuthenticationError, AuthenticationType } from '@/exception/security/AuthenticationError';
 
 export const ReqCredential = createParamDecorator<void, ExecutionContext, unknown>(
 	(_: void, ctx: ExecutionContext): unknown => {
@@ -9,7 +9,7 @@ export const ReqCredential = createParamDecorator<void, ExecutionContext, unknow
 
 		const result = UserCredentialSchema.safeParse(request.body);
 		if (!result.success) {
-			throw new AuthenticationError('Invalid credential', AuthenticationType.InvalidCredential);
+			throw new UnauthorizedError('Invalid credential', UnauthorizedType.InvalidCredential);
 		}
 
 		return result.data;

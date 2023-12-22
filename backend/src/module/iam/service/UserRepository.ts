@@ -57,13 +57,11 @@ export class UserMemRepository implements UserRepository {
 
 		const state = this.users.get(user.id);
 		if (!state) {
-			throw new ResourceNotFound('Resource not found', [
-				{
-					key: 'id:' + user.id,
-					path: null,
-					resource_type: 'USER',
-				},
-			]);
+			throw new ResourceNotFound('Resource not found', {
+				key: 'id:' + user.id,
+				path: null,
+				resource_type: 'USER',
+			});
 		}
 
 		this.users.set(user.id, user.internalState());
@@ -76,13 +74,11 @@ export class UserMemRepository implements UserRepository {
 		const state = this.users.get(id);
 
 		if (!state) {
-			throw new ResourceNotFound('Resource not found', [
-				{
-					key: 'id:' + id,
-					path: null,
-					resource_type: 'USER',
-				},
-			]);
+			throw new ResourceNotFound('Resource not found', {
+				key: 'id:' + id,
+				path: null,
+				resource_type: 'USER',
+			});
 		}
 
 		state.lastAuth = lastAuth;

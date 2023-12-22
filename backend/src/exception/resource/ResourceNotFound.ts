@@ -4,11 +4,11 @@ import { ResourceLocation } from '@/common/type';
 
 export class ResourceNotFound extends AppError {
 	public readonly error: string = 'NOT_FOUND';
-	public readonly resources: ResourceLocation[];
+	public readonly resource: ResourceLocation;
 
-	constructor(message: string, resources: ResourceLocation[] = []) {
+	constructor(message: string, resource: ResourceLocation) {
 		super(message);
-		this.resources = resources;
+		this.resource = resource;
 	}
 
 	public override httpErrorObject(): HttpErrorObject {
@@ -16,7 +16,7 @@ export class ResourceNotFound extends AppError {
 			status: HttpStatus.NOT_FOUND,
 			error: this.error,
 			message: this.message,
-			resources: this.resources,
+			resource: this.resource,
 		};
 	}
 }

@@ -27,13 +27,11 @@ export class AuthController {
 	async authenticate(@ReqCredential() credential: UserCredential): Promise<AuthResponse | void> {
 		const user = await this.userRepository.findByEmail(credential.email);
 		if (!user) {
-			throw new ResourceNotFound('Resource not found', [
-				{
-					resource_type: 'USER',
-					key: 'email:' + credential.email,
-					path: '.email',
-				},
-			]);
+			throw new ResourceNotFound('Resource not found', {
+				resource_type: 'USER',
+				key: 'email:' + credential.email,
+				path: '.email',
+			});
 		}
 
 		const error = await user.makeAuthentication(credential.password, this.passwordEncryption);

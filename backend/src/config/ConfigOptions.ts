@@ -16,14 +16,10 @@ export function createGlobalConfigOptions(): ConfigModuleOptions {
 			break;
 
 		case 'test':
-			options.ignoreEnvFile = false;
-			options.envFilePath = '.test.env';
-			break;
-
 		case 'development':
 		default:
 			options.ignoreEnvFile = false;
-			options.envFilePath = '.dev.env';
+			options.envFilePath = '.env';
 	}
 
 	return options;

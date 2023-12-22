@@ -1,24 +1,22 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { tokenFromBearerAuthScheme } from '@/http/AuthenticationScheme';
-import { UlidSchema } from '@/validation/Schema';
+import { UnauthorizedError, UnauthorizedType } from '@/exception/security/UnauthorizedError';
+import { User } from '@/module/iam/entity/User';
 import { Token } from '@/module/iam/type/Token';
-import {
-	TOKEN_ENCRYPTION_PROVIDER,
-	TokenEncryptionService,
-} from '@/module/iam/service/EncryptionService';
+import { USER_REPOSITORY_PROVIDER, UserRepository } from '@/module/iam/service/UserRepository';
 
 @Injectable()
 export class AuthService {
 	constructor(
-		@Inject(TOKEN_ENCRYPTION_PROVIDER)
-		private readonly tokenEncryption: TokenEncryptionService
+		@Inject(USER_REPOSITORY_PROVIDER)
+		private readonly userRepository: UserRepository
 	) {}
 
-	public async bearerAuthScheme(scheme: unknown): Promise<Token<string>> {
-		const tokenStr = tokenFromBearerAuthScheme(scheme);
+	public async getAuthenticatedUser(token: Token<string>): Promise<User> {
+		const user = await this.userRepository.find(token.data);
+		if (!user) {
+			throw new UnauthorizedError('Invalid token', UnauthorizedType.InvalidToken);
+		}
 
-		const token = await Token.verify(tokenStr, this.tokenEncryption, UlidSchema);
-
-		return token;
+		return user;
 	}
 }

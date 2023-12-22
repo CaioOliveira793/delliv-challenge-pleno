@@ -1,7 +1,7 @@
 import { ulid } from 'ulid';
 import { Entity, EntityID } from '@/module/base/Entity';
 import { PasswordEncryptionService } from '@/module/iam/service/EncryptionService';
-import { AuthenticationError, AuthenticationType } from '@/exception/security/AuthenticationError';
+import { UnauthorizedError, UnauthorizedType } from '@/exception/security/UnauthorizedError';
 
 export interface UserState {
 	created: Date;
@@ -43,17 +43,14 @@ export class User extends Entity<UserState> {
 	public async makeAuthentication(
 		password: string,
 		passwordEncryptionService: PasswordEncryptionService
-	): Promise<void | AuthenticationError> {
+	): Promise<void | UnauthorizedError> {
 		const passwordMatch = await passwordEncryptionService.compare(
 			this.state.passwordHash,
 			password
 		);
 
 		if (!passwordMatch) {
-			return new AuthenticationError(
-				'Invalid user credential',
-				AuthenticationType.InvalidCredential
-			);
+			return new UnauthorizedError('Invalid user credential', UnauthorizedType.InvalidCredential);
 		}
 
 		this.state.lastAuth = new Date();
