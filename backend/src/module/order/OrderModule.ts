@@ -1,13 +1,15 @@
 import { Module } from '@nestjs/common';
 import { IamModule } from '@/module/iam/IamModule';
-import { OrderController } from './controller/OrderController';
-import { OrderRepositoryProvider } from './service/OrderRepository';
+import { OrderPrismaRepositoryProvider } from '@/module/order/service/impl/OrderPrismaRepository';
+import { DeliveryEventPrismaRepositoryProvider } from '@/module/order/service/impl/DeliveryEventPrismaRepository';
+import { OrderController } from '@/module/order/controller/OrderController';
+import { DeliveryEventController } from '@/module/order/controller/DeliveryEventController';
 
 // TODO: rename order module to `DeliveryModule`
 @Module({
 	imports: [IamModule],
-	providers: [OrderRepositoryProvider],
-	controllers: [OrderController],
+	providers: [OrderPrismaRepositoryProvider, DeliveryEventPrismaRepositoryProvider],
+	controllers: [OrderController, DeliveryEventController],
 	exports: [],
 })
 export class OrderModule {}
