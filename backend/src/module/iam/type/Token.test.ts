@@ -6,6 +6,10 @@ import { Token } from '@/module/iam/type/Token';
 
 class FakeEncryptionService implements TokenEncryptionService {
 	public async verify<T>(cypher: string, schema: Schema<T>): Promise<T> {
+		if (!cypher.startsWith('###') && !cypher.endsWith('###')) {
+			throw new Error('INVALID_DATA');
+		}
+
 		const data = cypher.slice(3, -3);
 		const result = schema.safeParse(data);
 		if (!result.success) {
@@ -31,13 +35,22 @@ describe('Token type', () => {
 		expect(id).toStrictEqual(token.data);
 	});
 
-	it('create a token from a token cypher', async () => {
+	it('create a token from a verified cypher text', async () => {
 		const id = ulid();
-		const tokenCypher = `###${id}###`;
+		const cypherText = `###${id}###`;
 
-		const token = await Token.verify(tokenCypher, fakeEncripter, UlidSchema);
+		const token = await Token.verify(cypherText, fakeEncripter, UlidSchema);
 
-		expect(tokenCypher).toStrictEqual(token.toString());
+		expect(cypherText).toStrictEqual(token.valueOf());
 		expect(id).toStrictEqual(token.data);
+	});
+
+	it('throw error verifying a invalid cypher text', async () => {
+		const id = ulid();
+		const cypherText = `#$#${id}#$#`;
+
+		expect(() => Token.verify(cypherText, fakeEncripter, UlidSchema)).rejects.toThrow(
+			new Error('INVALID_DATA')
+		);
 	});
 });
