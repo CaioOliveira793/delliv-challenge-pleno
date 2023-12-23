@@ -3,6 +3,7 @@ import { uniqueConstraintViolationMessage } from '@/exception/Message';
 import { User, UserState } from '@/module/iam/entity/User';
 import { USER_REPOSITORY_PROVIDER, UserRepository } from '@/module/iam/service/UserRepository';
 import { ResourceNotFound } from '@/exception/resource/ResourceNotFound';
+import { USER_RESOURCE } from '@/module/iam/dto/Resource';
 
 @Injectable()
 export class UserMemRepository implements UserRepository {
@@ -51,7 +52,7 @@ export class UserMemRepository implements UserRepository {
 			throw new ResourceNotFound({
 				key: 'id:' + user.id,
 				path: null,
-				resource_type: 'USER',
+				resource_type: USER_RESOURCE,
 			});
 		}
 
@@ -68,7 +69,7 @@ export class UserMemRepository implements UserRepository {
 			throw new ResourceNotFound({
 				key: 'id:' + id,
 				path: null,
-				resource_type: 'USER',
+				resource_type: USER_RESOURCE,
 			});
 		}
 

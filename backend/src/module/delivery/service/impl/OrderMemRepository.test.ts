@@ -3,6 +3,7 @@ import { ResourceNotFound } from '@/exception/resource/ResourceNotFound';
 import { OrderMemRepository } from '@/module/delivery/service/impl/OrderMemRepository';
 import { fakeOrder } from '@/module/delivery/entity/Order.fake';
 import { fakeDeliveryEvent } from '@/module/delivery/entity/DeliveryEvent.fake';
+import { ORDER_RESOURCE } from '@/module/delivery/dto/Resource';
 
 describe('OrderMemRepository', () => {
 	describe('OrderMemRepository order methods', () => {
@@ -70,7 +71,7 @@ describe('OrderMemRepository', () => {
 
 			await expect(() => repository.update(order)).rejects.toThrow(
 				new ResourceNotFound({
-					resource_type: 'ORDER',
+					resource_type: ORDER_RESOURCE,
 					key: 'id:' + order.id,
 					path: null,
 				})
@@ -128,7 +129,7 @@ describe('OrderMemRepository', () => {
 				new ResourceNotFound({
 					key: 'id:' + order.id,
 					path: null,
-					resource_type: 'ORDER',
+					resource_type: ORDER_RESOURCE,
 				})
 			);
 		});

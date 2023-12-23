@@ -3,6 +3,7 @@ import { faker } from '@faker-js/faker';
 import { UserMemRepository } from '@/module/iam/service/impl/UserMemRepository';
 import { fakeUser } from '@/module/iam/entity/User.fake';
 import { ResourceNotFound } from '@/exception/resource/ResourceNotFound';
+import { USER_RESOURCE } from '@/module/iam/dto/Resource';
 
 describe('UserMemRepository', () => {
 	it('insert a new user into the repository', async () => {
@@ -118,7 +119,7 @@ describe('UserMemRepository', () => {
 			new ResourceNotFound({
 				key: 'id:' + user.id,
 				path: null,
-				resource_type: 'USER',
+				resource_type: USER_RESOURCE,
 			})
 		);
 	});
@@ -145,7 +146,7 @@ describe('UserMemRepository', () => {
 			new ResourceNotFound({
 				key: 'id:' + user.id,
 				path: null,
-				resource_type: 'USER',
+				resource_type: USER_RESOURCE,
 			})
 		);
 	});

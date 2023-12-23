@@ -1,6 +1,8 @@
 import { Order } from '@/module/delivery/entity/Order';
 import { DeliveryEvent } from '@/module/delivery/entity/DeliveryEvent';
 
+export const ORDER_RESOURCE = 'ORDER';
+
 export interface OrderResource {
 	id: string;
 	created: Date;
@@ -22,6 +24,8 @@ export function makeOrderResource(order: Order): OrderResource {
 		status: order.status,
 	};
 }
+
+export const DELIVERY_EVENT_RESOURCE = 'DELIVERY_EVENT';
 
 export interface DeliveryEventResource {
 	id: string;

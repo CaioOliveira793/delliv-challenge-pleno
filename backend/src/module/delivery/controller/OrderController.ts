@@ -10,7 +10,7 @@ import {
 } from '@/module/delivery/service/OrderRepository';
 import { CreateOrderData, Order } from '@/module/delivery/entity/Order';
 import { CreateOrderSchema } from '@/module/delivery/validation/Schema';
-import { OrderResource, makeOrderResource } from '@/module/delivery/dto/Resource';
+import { ORDER_RESOURCE, OrderResource, makeOrderResource } from '@/module/delivery/dto/Resource';
 import { UlidSchema } from '@/validation/Schema';
 import { ResourceNotFound } from '@/exception/resource/ResourceNotFound';
 
@@ -47,7 +47,7 @@ export class OrderController {
 		const order = await this.orderRepository.find(id);
 		if (!order || order.creatorId !== user.id) {
 			throw new ResourceNotFound({
-				resource_type: 'ORDER',
+				resource_type: ORDER_RESOURCE,
 				key: 'id:' + id,
 				path: null,
 			});

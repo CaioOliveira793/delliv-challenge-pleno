@@ -8,7 +8,11 @@ import {
 	OrderQueryParams,
 	DeliveryEventQueryParams,
 } from '@/module/delivery/service/OrderRepository';
-import { DeliveryEventResource, OrderResource } from '@/module/delivery/dto/Resource';
+import {
+	DeliveryEventResource,
+	ORDER_RESOURCE,
+	OrderResource,
+} from '@/module/delivery/dto/Resource';
 import { DeliveryEvent, DeliveryEventState } from '@/module/delivery/entity/DeliveryEvent';
 
 function mapIdStateToOrderResource(id: string, state: OrderState): OrderResource {
@@ -72,7 +76,7 @@ export class OrderMemRepository implements OrderRepository {
 			throw new ResourceNotFound({
 				key: 'id:' + order.id,
 				path: null,
-				resource_type: 'ORDER',
+				resource_type: ORDER_RESOURCE,
 			});
 		}
 

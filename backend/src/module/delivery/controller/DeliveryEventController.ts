@@ -7,7 +7,12 @@ import { UlidSchema } from '@/validation/Schema';
 import { AuthService } from '@/module/iam/service/AuthService';
 import { Token } from '@/module/iam/type/Token';
 import { CreateDeliveryEventData, DeliveryEvent } from '@/module/delivery/entity/DeliveryEvent';
-import { DeliveryEventResource, makeDeliveryEventResource } from '@/module/delivery/dto/Resource';
+import {
+	DELIVERY_EVENT_RESOURCE,
+	DeliveryEventResource,
+	ORDER_RESOURCE,
+	makeDeliveryEventResource,
+} from '@/module/delivery/dto/Resource';
 import { CreateDeliveryEventSchema } from '@/module/delivery/validation/Schema';
 import {
 	ORDER_REPOSITORY_PROVIDER,
@@ -33,7 +38,7 @@ export class DeliveryEventController {
 		const order = await this.orderRepository.find(data.order_id);
 		if (!order) {
 			throw new ResourceNotFound({
-				resource_type: 'ORDER',
+				resource_type: ORDER_RESOURCE,
 				key: 'id:' + data.order_id,
 				path: '.order_id',
 			});
@@ -58,7 +63,7 @@ export class DeliveryEventController {
 		const event = await this.orderRepository.findEvent(id);
 		if (!event || event.creatorId !== user.id) {
 			throw new ResourceNotFound({
-				resource_type: 'DELIVERY_EVENT',
+				resource_type: DELIVERY_EVENT_RESOURCE,
 				key: 'id:' + id,
 				path: null,
 			});
