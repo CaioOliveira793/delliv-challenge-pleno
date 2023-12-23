@@ -4,10 +4,13 @@ import { SchemaPipe } from '@/pipe/SchemaPipe';
 import { AccessTokenPipe } from '@/pipe/AccessTokenPipe';
 import { AuthService } from '@/module/iam/service/AuthService';
 import { Token } from '@/module/iam/type/Token';
-import { ORDER_REPOSITORY_PROVIDER, OrderRepository } from '@/module/order/service/OrderRepository';
-import { CreateOrderData, Order } from '@/module/order/entity/Order';
-import { CreateOrderSchema } from '@/module/order/validation/Schema';
-import { OrderResource, makeOrderResource } from '@/module/order/dto/Resource';
+import {
+	ORDER_REPOSITORY_PROVIDER,
+	OrderRepository,
+} from '@/module/delivery/service/OrderRepository';
+import { CreateOrderData, Order } from '@/module/delivery/entity/Order';
+import { CreateOrderSchema } from '@/module/delivery/validation/Schema';
+import { OrderResource, makeOrderResource } from '@/module/delivery/dto/Resource';
 import { UlidSchema } from '@/validation/Schema';
 import { ResourceNotFound } from '@/exception/resource/ResourceNotFound';
 

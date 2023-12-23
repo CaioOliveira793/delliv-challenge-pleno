@@ -5,7 +5,7 @@ import { createGlobalConfigOptions } from '@/config/ConfigOptions';
 import { HttpExceptionFilter } from '@/exception/HttpExceptionFilter';
 import { SharedModule } from '@/module/base/SharedModule';
 import { IamModule } from '@/module/iam/IamModule';
-import { OrderModule } from '@/module/order/OrderModule';
+import { DeliveryModule } from '@/module/delivery/DeliveryModule';
 
 @Module({
 	imports: [
@@ -14,7 +14,7 @@ import { OrderModule } from '@/module/order/OrderModule';
 		IamModule,
 		RouterModule.register([
 			{ path: 'iam', module: IamModule },
-			{ path: 'delivery', module: OrderModule },
+			{ path: 'delivery', module: DeliveryModule },
 		]),
 	],
 	providers: [{ provide: APP_FILTER, useClass: HttpExceptionFilter }],

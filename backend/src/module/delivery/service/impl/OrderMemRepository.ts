@@ -1,13 +1,13 @@
 import { Injectable, Optional, Provider } from '@nestjs/common';
 import { uniqueConstraintViolationMessage } from '@/exception/Message';
 import { ResourceNotFound } from '@/exception/resource/ResourceNotFound';
-import { OrderState, Order } from '@/module/order/entity/Order';
+import { OrderState, Order } from '@/module/delivery/entity/Order';
 import {
 	OrderRepository,
 	ORDER_REPOSITORY_PROVIDER,
 	OrderQueryParams,
-} from '@/module/order/service/OrderRepository';
-import { OrderResource } from '@/module/order/dto/Resource';
+} from '@/module/delivery/service/OrderRepository';
+import { OrderResource } from '@/module/delivery/dto/Resource';
 
 function mapIdStateToOrderResource(id: string, state: OrderState): OrderResource {
 	return {

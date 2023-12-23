@@ -1,5 +1,5 @@
 import { EntityID } from '@/module/base/Entity';
-import { DeliveryEvent } from '@/module/order/entity/DeliveryEvent';
+import { DeliveryEvent } from '@/module/delivery/entity/DeliveryEvent';
 import { DeliveryEventResource } from '../dto/Resource';
 
 export interface DeliveryEventQueryParams {

@@ -1,13 +1,13 @@
 import { PrismaClient, Order as OrderTuple } from '@prisma/client';
 import { Inject, Injectable, Provider } from '@nestjs/common';
 import { PRISMA_SERVICE_PROVIDER, PrismaService } from '@/module/base/service/PrismaService';
-import { Order, OrderState } from '@/module/order/entity/Order';
+import { Order, OrderState } from '@/module/delivery/entity/Order';
 import {
 	ORDER_REPOSITORY_PROVIDER,
 	OrderQueryParams,
 	OrderRepository,
-} from '@/module/order/service/OrderRepository';
-import { OrderResource } from '@/module/order/dto/Resource';
+} from '@/module/delivery/service/OrderRepository';
+import { OrderResource } from '@/module/delivery/dto/Resource';
 
 function tupleToOrderState(tuple: OrderTuple): OrderState {
 	return {

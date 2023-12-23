@@ -1,6 +1,6 @@
 import { EntityID } from '@/module/base/Entity';
-import { Order } from '@/module/order/entity/Order';
-import { OrderResource } from '@/module/order/dto/Resource';
+import { Order } from '@/module/delivery/entity/Order';
+import { OrderResource } from '@/module/delivery/dto/Resource';
 
 export interface OrderQueryParams {
 	creator_id?: string;

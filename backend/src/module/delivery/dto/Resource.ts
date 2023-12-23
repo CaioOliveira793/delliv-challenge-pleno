@@ -1,5 +1,5 @@
-import { Order } from '@/module/order/entity/Order';
-import { DeliveryEvent } from '@/module/order/entity/DeliveryEvent';
+import { Order } from '@/module/delivery/entity/Order';
+import { DeliveryEvent } from '@/module/delivery/entity/DeliveryEvent';
 
 export interface OrderResource {
 	id: string;

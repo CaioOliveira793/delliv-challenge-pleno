@@ -6,14 +6,17 @@ import { SchemaPipe } from '@/pipe/SchemaPipe';
 import { UlidSchema } from '@/validation/Schema';
 import { AuthService } from '@/module/iam/service/AuthService';
 import { Token } from '@/module/iam/type/Token';
-import { CreateDeliveryEventData, DeliveryEvent } from '@/module/order/entity/DeliveryEvent';
-import { DeliveryEventResource, makeDeliveryEventResource } from '@/module/order/dto/Resource';
+import { CreateDeliveryEventData, DeliveryEvent } from '@/module/delivery/entity/DeliveryEvent';
+import { DeliveryEventResource, makeDeliveryEventResource } from '@/module/delivery/dto/Resource';
 import {
 	DELIVERY_EVENT_REPOSITORY_PROVIDER,
 	DeliveryEventRepository,
-} from '@/module/order/service/DeliveryEventRepository';
-import { CreateDeliveryEventSchema } from '@/module/order/validation/Schema';
-import { ORDER_REPOSITORY_PROVIDER, OrderRepository } from '@/module/order/service/OrderRepository';
+} from '@/module/delivery/service/DeliveryEventRepository';
+import { CreateDeliveryEventSchema } from '@/module/delivery/validation/Schema';
+import {
+	ORDER_REPOSITORY_PROVIDER,
+	OrderRepository,
+} from '@/module/delivery/service/OrderRepository';
 
 @Controller('event')
 export class DeliveryEventController {

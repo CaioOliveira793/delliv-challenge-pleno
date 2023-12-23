@@ -1,13 +1,13 @@
 import { Inject, Injectable, Provider } from '@nestjs/common';
 import { PrismaClient, DeliveryEvent as DeliveryEventTuple } from '@prisma/client';
 import { PRISMA_SERVICE_PROVIDER, PrismaService } from '@/module/base/service/PrismaService';
-import { DeliveryEvent, DeliveryEventState } from '@/module/order/entity/DeliveryEvent';
-import { DeliveryEventResource } from '@/module/order/dto/Resource';
+import { DeliveryEvent, DeliveryEventState } from '@/module/delivery/entity/DeliveryEvent';
+import { DeliveryEventResource } from '@/module/delivery/dto/Resource';
 import {
 	DELIVERY_EVENT_REPOSITORY_PROVIDER,
 	DeliveryEventQueryParams,
 	DeliveryEventRepository,
-} from '@/module/order/service/DeliveryEventRepository';
+} from '@/module/delivery/service/DeliveryEventRepository';
 
 function mapTupleToDeliveryEventState(tuple: DeliveryEventTuple): DeliveryEventState {
 	return {

@@ -1,12 +1,12 @@
 import { Optional, Provider } from '@nestjs/common';
 import { uniqueConstraintViolationMessage } from '@/exception/Message';
-import { DeliveryEventState, DeliveryEvent } from '@/module/order/entity/DeliveryEvent';
-import { DeliveryEventResource } from '@/module/order/dto/Resource';
+import { DeliveryEventState, DeliveryEvent } from '@/module/delivery/entity/DeliveryEvent';
+import { DeliveryEventResource } from '@/module/delivery/dto/Resource';
 import {
 	DELIVERY_EVENT_REPOSITORY_PROVIDER,
 	DeliveryEventQueryParams,
 	DeliveryEventRepository,
-} from '@/module/order/service/DeliveryEventRepository';
+} from '@/module/delivery/service/DeliveryEventRepository';
 
 function mapIdStateToDeliveryEventResource(
 	id: string,
