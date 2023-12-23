@@ -82,8 +82,9 @@ export class UserMemRepository implements UserRepository {
 		return null;
 	}
 
-	public static readonly UNIQUE_EMAIL_MESSAGE = uniqueConstraintViolationMessage('unique_email');
-	public static readonly UNIQUE_ID_MESSAGE = uniqueConstraintViolationMessage('unique_id');
+	public static readonly UNIQUE_EMAIL_MESSAGE =
+		uniqueConstraintViolationMessage('user_unique_email');
+	public static readonly UNIQUE_ID_MESSAGE = uniqueConstraintViolationMessage('user_unique_id');
 }
 
 export const UserMemRepositoryProvider: Provider<UserRepository> = {

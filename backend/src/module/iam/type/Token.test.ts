@@ -49,7 +49,7 @@ describe('Token type', () => {
 		const id = ulid();
 		const cypherText = `#$#${id}#$#`;
 
-		expect(() => Token.verify(cypherText, fakeEncripter, UlidSchema)).rejects.toThrow(
+		await expect(() => Token.verify(cypherText, fakeEncripter, UlidSchema)).rejects.toThrow(
 			new Error('INVALID_DATA')
 		);
 	});

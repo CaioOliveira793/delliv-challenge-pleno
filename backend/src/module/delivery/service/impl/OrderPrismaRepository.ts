@@ -140,6 +140,9 @@ export class OrderPrismaRepository implements OrderRepository {
 				creator_id: params.creator_id,
 				status: params.status ? { contains: params.status } : undefined,
 			},
+			orderBy: {
+				created: 'desc',
+			},
 		});
 
 		return tuples.map(tupleToOrderResource);
@@ -152,6 +155,9 @@ export class OrderPrismaRepository implements OrderRepository {
 			where: {
 				creator_id: params.creator_id,
 				order_id: params.order_id,
+			},
+			orderBy: {
+				created: 'desc',
 			},
 		});
 

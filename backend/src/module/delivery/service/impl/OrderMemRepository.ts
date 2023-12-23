@@ -72,7 +72,7 @@ export class OrderMemRepository implements OrderRepository {
 			throw new ResourceNotFound({
 				key: 'id:' + order.id,
 				path: null,
-				resource_type: 'USER',
+				resource_type: 'ORDER',
 			});
 		}
 
@@ -84,7 +84,7 @@ export class OrderMemRepository implements OrderRepository {
 			throw new Error(OrderMemRepository.DELIVERY_EVENT_UNIQUE_ID_MESSAGE);
 		}
 
-		this.update(order);
+		await this.update(order);
 		this.events.set(event.id, event.internalState());
 	}
 
@@ -100,9 +100,11 @@ export class OrderMemRepository implements OrderRepository {
 		const orders: Array<OrderResource> = [];
 
 		for (const [id, state] of this.orders.entries()) {
+			// WHERE order.creator_id == {creator_id}
 			if (params.creator_id && state.creatorId !== params.creator_id) {
 				continue;
 			}
+			// WHERE order.status LIKE %{status}%
 			if (params.status && !state.status.includes(params.status)) {
 				continue;
 			}
@@ -110,6 +112,8 @@ export class OrderMemRepository implements OrderRepository {
 			orders.push(mapIdStateToOrderResource(id, state));
 		}
 
+		// ORDER BY created DESC
+		orders.sort((a, b) => b.created.getTime() - a.created.getTime());
 		return orders;
 	}
 
@@ -119,9 +123,11 @@ export class OrderMemRepository implements OrderRepository {
 		const events: Array<DeliveryEventResource> = [];
 
 		for (const [id, state] of this.events.entries()) {
+			// WHERE order.creator_id == {creator_id}
 			if (params.creator_id && state.creatorId !== params.creator_id) {
 				continue;
 			}
+			// WHERE order.order_id == {order_id}
 			if (params.order_id && state.orderId !== params.order_id) {
 				continue;
 			}
@@ -129,12 +135,14 @@ export class OrderMemRepository implements OrderRepository {
 			events.push(mapIdStateToDeliveryEventResource(id, state));
 		}
 
+		// ORDER BY created DESC
+		events.sort((a, b) => b.created.getTime() - a.created.getTime());
 		return events;
 	}
 
-	private static readonly ORDER_UNIQUE_ID_MESSAGE =
+	public static readonly ORDER_UNIQUE_ID_MESSAGE =
 		uniqueConstraintViolationMessage('order_unique_id');
-	private static readonly DELIVERY_EVENT_UNIQUE_ID_MESSAGE = uniqueConstraintViolationMessage(
+	public static readonly DELIVERY_EVENT_UNIQUE_ID_MESSAGE = uniqueConstraintViolationMessage(
 		'delivery_event_unique_id'
 	);
 }

@@ -23,7 +23,7 @@ describe('UserMemRepository', () => {
 
 		await repository.insert(fakeUser({}, commonID));
 
-		expect(() => repository.insert(fakeUser({}, commonID))).rejects.toThrow(
+		await expect(() => repository.insert(fakeUser({}, commonID))).rejects.toThrow(
 			new Error(UserMemRepository.UNIQUE_ID_MESSAGE)
 		);
 	});
@@ -34,7 +34,7 @@ describe('UserMemRepository', () => {
 
 		await repository.insert(fakeUser({ email: commonEmail }));
 
-		expect(() => repository.insert(fakeUser({ email: commonEmail }))).rejects.toThrow(
+		await expect(() => repository.insert(fakeUser({ email: commonEmail }))).rejects.toThrow(
 			new Error(UserMemRepository.UNIQUE_EMAIL_MESSAGE)
 		);
 	});
@@ -105,7 +105,7 @@ describe('UserMemRepository', () => {
 
 		user.update({ name: faker.person.fullName(), email: commonEmail });
 
-		expect(() => repository.update(user)).rejects.toThrow(
+		await expect(() => repository.update(user)).rejects.toThrow(
 			new Error(UserMemRepository.UNIQUE_EMAIL_MESSAGE)
 		);
 	});
@@ -114,7 +114,7 @@ describe('UserMemRepository', () => {
 		const user = fakeUser();
 		const repository = new UserMemRepository();
 
-		expect(() => repository.update(user)).rejects.toThrow(
+		await expect(() => repository.update(user)).rejects.toThrow(
 			new ResourceNotFound({
 				key: 'id:' + user.id,
 				path: null,
@@ -141,7 +141,7 @@ describe('UserMemRepository', () => {
 		const lastAuth = faker.date.between({ from: user.created, to: new Date() });
 		const repository = new UserMemRepository();
 
-		expect(() => repository.updateLastAuth(user.id, lastAuth)).rejects.toThrow(
+		await expect(() => repository.updateLastAuth(user.id, lastAuth)).rejects.toThrow(
 			new ResourceNotFound({
 				key: 'id:' + user.id,
 				path: null,
