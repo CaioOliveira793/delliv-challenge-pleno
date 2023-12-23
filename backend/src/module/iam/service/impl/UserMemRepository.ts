@@ -47,7 +47,7 @@ export class UserMemRepository implements UserRepository {
 
 		const state = this.users.get(user.id);
 		if (!state) {
-			throw new ResourceNotFound('Resource not found', {
+			throw new ResourceNotFound({
 				key: 'id:' + user.id,
 				path: null,
 				resource_type: 'USER',
@@ -64,7 +64,7 @@ export class UserMemRepository implements UserRepository {
 		const state = this.users.get(id);
 
 		if (!state) {
-			throw new ResourceNotFound('Resource not found', {
+			throw new ResourceNotFound({
 				key: 'id:' + id,
 				path: null,
 				resource_type: 'USER',

@@ -6,8 +6,8 @@ export class ResourceNotFound extends AppError {
 	public readonly error: string = 'NOT_FOUND';
 	public readonly resource: ResourceLocation;
 
-	constructor(message: string, resource: ResourceLocation) {
-		super(message);
+	constructor(resource: ResourceLocation) {
+		super('Resource not found');
 		this.resource = resource;
 	}
 

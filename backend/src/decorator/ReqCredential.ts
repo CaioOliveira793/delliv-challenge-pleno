@@ -9,7 +9,7 @@ export const ReqCredential = createParamDecorator<void, ExecutionContext, unknow
 
 		const result = UserCredentialSchema.safeParse(request.body);
 		if (!result.success) {
-			throw new UnauthorizedError('Invalid credential', UnauthorizedType.InvalidCredential);
+			throw new UnauthorizedError(UnauthorizedType.InvalidCredential);
 		}
 
 		return result.data;

@@ -21,12 +21,12 @@ export class JWTEncryptionService implements TokenEncryptionService {
 			const result = schema.safeParse(payload.data);
 
 			if (!result.success) {
-				throw new UnauthorizedError('Invalid token', UnauthorizedType.InvalidToken);
+				throw new UnauthorizedError(UnauthorizedType.InvalidToken);
 			}
 
 			return result.data;
 		} catch (err) {
-			throw new UnauthorizedError('Invalid token', UnauthorizedType.InvalidToken);
+			throw new UnauthorizedError(UnauthorizedType.InvalidToken);
 		}
 	}
 

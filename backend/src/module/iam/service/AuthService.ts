@@ -14,7 +14,7 @@ export class AuthService {
 	public async getAuthenticatedUser(token: Token<string>): Promise<User> {
 		const user = await this.userRepository.find(token.data);
 		if (!user) {
-			throw new UnauthorizedError('Invalid token', UnauthorizedType.InvalidToken);
+			throw new UnauthorizedError(UnauthorizedType.InvalidToken);
 		}
 
 		return user;

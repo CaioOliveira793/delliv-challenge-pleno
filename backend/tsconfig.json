@@ -2,9 +2,7 @@
 	"compilerOptions": {
 		"incremental": false,
 		"target": "ES2022",
-		"lib": [
-			"ES2022"
-		],
+		"lib": ["ES2022"],
 		"module": "ESNext",
 		"moduleResolution": "node",
 		"noEmit": true,
@@ -16,12 +14,8 @@
 		"rootDir": "./",
 		"baseUrl": "./",
 		"paths": {
-			"@/*": [
-				"./src/*"
-			],
-			"@test/*": [
-				"./../test/*"
-			]
+			"@/*": ["./src/*"],
+			"@test/*": ["./../test/*"]
 		},
 		"outDir": "build",
 		"isolatedModules": false,
@@ -55,17 +49,6 @@
 		"downlevelIteration": false,
 		"skipLibCheck": true
 	},
-	"include": [
-		"src/**/*",
-		"test/**/*",
-		"jest.config.ts",
-		"jest.setup.ts",
-		"rollup.config.js"
-	],
-	"exclude": [
-		".rollup.cache/**",
-		"node_modules/**",
-		"build/**",
-		"coverage/**"
-	]
+	"include": ["src/**/*", "test/**/*", "jest.config.ts", "jest.setup.ts", "rollup.config.js"],
+	"exclude": [".rollup.cache/**", "node_modules/**", "build/**", "coverage/**"]
 }

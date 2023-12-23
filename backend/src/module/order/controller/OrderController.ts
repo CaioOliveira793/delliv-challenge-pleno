@@ -43,7 +43,7 @@ export class OrderController {
 
 		const order = await this.orderRepository.find(id);
 		if (!order || order.creatorId !== user.id) {
-			throw new ResourceNotFound('Order not found', {
+			throw new ResourceNotFound({
 				resource_type: 'ORDER',
 				key: 'id:' + id,
 				path: null,

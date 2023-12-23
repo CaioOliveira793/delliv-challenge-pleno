@@ -6,8 +6,8 @@ export class ConflictError extends AppError {
 	public readonly error = 'CONFLICT';
 	public readonly resource: ResourceLocation;
 
-	constructor(message: string, resource: ResourceLocation) {
-		super(message);
+	constructor(resource: ResourceLocation) {
+		super('Resource conflict error');
 		this.resource = resource;
 	}
 

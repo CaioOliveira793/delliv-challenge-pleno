@@ -35,7 +35,7 @@ export class DeliveryEventController {
 
 		const order = await this.orderRepository.find(data.order_id);
 		if (!order) {
-			throw new ResourceNotFound('Order not found', {
+			throw new ResourceNotFound({
 				resource_type: 'ORDER',
 				key: 'id:' + data.order_id,
 				path: '.order_id',
@@ -62,7 +62,7 @@ export class DeliveryEventController {
 
 		const event = await this.deliveryEventRepository.find(id);
 		if (!event || event.creatorId !== user.id) {
-			throw new ResourceNotFound('Delivery event not found', {
+			throw new ResourceNotFound({
 				resource_type: 'DELIVERY_EVENT',
 				key: 'id:' + id,
 				path: null,

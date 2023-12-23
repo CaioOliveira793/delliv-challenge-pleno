@@ -46,7 +46,7 @@ export class User extends Entity<UserState> {
 	): Promise<void> {
 		const match = await passwordService.compare(this.state.passwordHash, password);
 		if (!match) {
-			throw new UnauthorizedError('Invalid user credential', UnauthorizedType.InvalidCredential);
+			throw new UnauthorizedError(UnauthorizedType.InvalidCredential);
 		}
 
 		this.state.lastAuth = new Date();

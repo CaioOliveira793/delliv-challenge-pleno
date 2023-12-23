@@ -27,7 +27,7 @@ export class AuthController {
 	async authenticate(@ReqCredential() credential: UserCredential): Promise<AuthResponse | void> {
 		const user = await this.userRepository.findByEmail(credential.email);
 		if (!user) {
-			throw new ResourceNotFound('Resource not found', {
+			throw new ResourceNotFound({
 				resource_type: 'USER',
 				key: 'email:' + credential.email,
 				path: '.email',

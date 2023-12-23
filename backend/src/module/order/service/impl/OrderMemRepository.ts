@@ -65,7 +65,7 @@ export class OrderMemRepository implements OrderRepository {
 	public async update(order: Order): Promise<void> {
 		const state = this.orders.get(order.id);
 		if (!state) {
-			throw new ResourceNotFound('Resource not found', {
+			throw new ResourceNotFound({
 				key: 'id:' + order.id,
 				path: null,
 				resource_type: 'USER',

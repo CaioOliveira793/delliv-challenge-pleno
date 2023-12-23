@@ -35,7 +35,7 @@ export class UserController {
 	): Promise<AuthResponse> {
 		const existentUser = await this.userRepository.findByEmail(data.email);
 		if (existentUser) {
-			throw new ConflictError('Resource conflict error', {
+			throw new ConflictError({
 				resource_type: 'USER',
 				key: 'email:' + data.email,
 				path: '.email',
