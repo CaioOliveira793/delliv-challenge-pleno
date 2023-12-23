@@ -1,6 +1,7 @@
 import { ulid } from 'ulid';
 import { faker } from '@faker-js/faker';
 import { CreateUserData, User, UserState } from '@/module/iam/entity/User';
+import { UserCredential } from '../dto/Resource';
 
 export function fakeUserState(state: Partial<UserState> = {}): UserState {
 	const created = state.created ?? faker.date.past();
@@ -26,6 +27,13 @@ export function fakeCreateUserData(data: Partial<CreateUserData> = {}): CreateUs
 	return {
 		email: data.email ?? faker.internet.email(),
 		name: data.name ?? faker.person.fullName(),
+		password: data.password ?? fakeUserPassword(),
+	};
+}
+
+export function fakeUserCredential(data: Partial<UserCredential> = {}): UserCredential {
+	return {
+		email: data.email ?? faker.internet.email(),
 		password: data.password ?? fakeUserPassword(),
 	};
 }

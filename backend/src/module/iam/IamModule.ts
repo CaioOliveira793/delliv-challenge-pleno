@@ -8,6 +8,7 @@ import { Argon2EncryptionProvider } from '@/module/iam/service/impl/Argon2Encryp
 import { JWTEncryptionProvider } from '@/module/iam/service/impl/JWTEncryptionService';
 import { UserPrismaRepositoryProvider } from '@/module/iam/service/impl/UserPrismaRepository';
 import { CreateUserService } from './usecase/CreateUserService';
+import { AuthenticateUserService } from './usecase/AuthenticateUserService';
 
 @Module({
 	imports: [SharedModule],
@@ -18,6 +19,7 @@ import { CreateUserService } from './usecase/CreateUserService';
 		UserPrismaRepositoryProvider,
 
 		CreateUserService,
+		AuthenticateUserService,
 
 		AuthService,
 	],
