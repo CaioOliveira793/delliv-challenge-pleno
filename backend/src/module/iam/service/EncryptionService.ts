@@ -6,8 +6,8 @@ export interface PasswordEncryptionService {
 }
 
 export interface TokenEncryptionService {
-	verify<T>(cypher: string, schema: Schema<T>): T | Promise<T>;
-	sign<T>(data: T): string | Promise<string>;
+	verify<T>(cypher: string, schema: Schema<T>): Promise<T>;
+	sign<T>(data: T): Promise<string>;
 }
 
 export const PASSWORD_ENCRYPTION_PROVIDER = 'IAM/PASSWORD_ENCRYPTION_PROVIDER';

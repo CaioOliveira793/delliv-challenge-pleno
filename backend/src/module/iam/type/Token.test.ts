@@ -19,7 +19,7 @@ class FakeEncryptionService implements TokenEncryptionService {
 		return result.data;
 	}
 
-	public sign<T>(data: T): string | Promise<string> {
+	public async sign<T>(data: T): Promise<string> {
 		return `###${data}###`;
 	}
 }

@@ -6,8 +6,8 @@ import { CreateUserSchema } from '@/module/iam/validation/Schema';
 import { ReqHeader } from '@/decorator/ReqHeader';
 import { AccessTokenPipe } from '@/pipe/AccessTokenPipe';
 import { SchemaPipe } from '@/pipe/SchemaPipe';
-import { AuthService } from '../service/AuthService';
-import { CreateUserService } from '../usecase/CreateUserService';
+import { AuthService } from '@/module/iam/service/AuthService';
+import { CreateUserService } from '@/module/iam/usecase/CreateUserService';
 
 @Controller('user')
 export class UserController {

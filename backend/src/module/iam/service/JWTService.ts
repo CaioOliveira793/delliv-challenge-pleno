@@ -1,4 +1,4 @@
-import { VerifyErrors, verify as jwtVerify, sign as jwtSign } from 'jsonwebtoken';
+import { SignJWT, jwtVerify } from 'jose';
 
 export interface Payload<T> {
 	/** Custom payload */
@@ -24,7 +24,7 @@ export interface Payload<T> {
 	 *
 	 * @see https://datatracker.ietf.org/doc/html/rfc7519#section-4.1.4
 	 */
-	exp?: number;
+	exp: number;
 	/**
 	 * Issued at (in seconds)
 	 *
@@ -35,32 +35,38 @@ export interface Payload<T> {
 	 *
 	 * @see https://datatracker.ietf.org/doc/html/rfc7519#section-4.1.6
 	 */
-	iat?: number;
+	iat: number;
 }
 
 export const JWT_ISSUER = 'challenge-service';
 
 export class JWTService {
-	private readonly secret: string;
+	private readonly key: Uint8Array;
 
 	constructor(secret: string) {
-		this.secret = secret;
+		this.key = new TextEncoder().encode(secret);
 	}
 
-	public verify<T>(token: string): Promise<Payload<T>> {
-		return new Promise((resolve, reject) => {
-			jwtVerify(token.toString(), this.secret, (err: VerifyErrors | null, decode) => {
-				if (err) {
-					reject(err);
-					return;
-				}
-
-				resolve(decode as Payload<T>);
-			});
+	public async verify<T>(token: string): Promise<Payload<T>> {
+		const result = await jwtVerify<Payload<T>>(token, this.key, {
+			requiredClaims: ['iss', 'exp', 'iat'],
+			issuer: [JWT_ISSUER],
 		});
+		return result.payload;
 	}
 
-	public sign<T>(data: T, expiresIn: number): string {
-		return jwtSign({ data }, this.secret, { expiresIn, issuer: JWT_ISSUER });
+	/**
+	 * Signs a new JWT.
+	 *
+	 * @param data payload
+	 * @param expiresIn expiration time (in seconds)
+	 * @returns a signed token
+	 */
+	public sign<T>(data: T, expiresIn: number): Promise<string> {
+		return new SignJWT({ data, iss: JWT_ISSUER, exp: expiresIn, iat: Date.now() })
+			.setProtectedHeader({ alg: JWTService.ALGORITHM })
+			.sign(this.key);
 	}
+
+	private static readonly ALGORITHM = 'HS256';
 }

@@ -1,5 +1,5 @@
-import { Injectable, Provider } from '@nestjs/common';
 import { Schema } from 'zod';
+import { Injectable, Provider } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { EnvVariables } from '@/config/Environment';
 import { UnauthorizedError, UnauthorizedType } from '@/exception/security/UnauthorizedError';
@@ -30,8 +30,8 @@ export class JWTEncryptionService implements TokenEncryptionService {
 		}
 	}
 
-	public sign<T>(data: T): string {
-		return this.jwtService.sign<T>(data, JWTEncryptionService.TOKEN_EXPIRATION);
+	public async sign<T>(data: T): Promise<string> {
+		return this.jwtService.sign<T>(data, JWTEncryptionService.TOKEN_EXPIRATION + Date.now());
 	}
 
 	private static readonly TOKEN_EXPIRATION = 60 * 60 * 8; // 8h
