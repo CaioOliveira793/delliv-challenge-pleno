@@ -41,7 +41,8 @@ export class UserMemRepository implements UserRepository {
 	}
 
 	public async update(user: User): Promise<void> {
-		if (this.idFromEmail(user.email) !== user.id) {
+		const idWithSameEmail = this.idFromEmail(user.email);
+		if (idWithSameEmail && idWithSameEmail !== user.id) {
 			throw new Error(UserMemRepository.UNIQUE_EMAIL_MESSAGE);
 		}
 
@@ -58,7 +59,7 @@ export class UserMemRepository implements UserRepository {
 	}
 
 	/**
-	 * Update user last authentication time.
+	 * Update user last authentication field.
 	 */
 	public async updateLastAuth(id: string, lastAuth: Date): Promise<void> {
 		const state = this.users.get(id);
@@ -81,8 +82,8 @@ export class UserMemRepository implements UserRepository {
 		return null;
 	}
 
-	private static readonly UNIQUE_EMAIL_MESSAGE = uniqueConstraintViolationMessage('unique_email');
-	private static readonly UNIQUE_ID_MESSAGE = uniqueConstraintViolationMessage('unique_id');
+	public static readonly UNIQUE_EMAIL_MESSAGE = uniqueConstraintViolationMessage('unique_email');
+	public static readonly UNIQUE_ID_MESSAGE = uniqueConstraintViolationMessage('unique_id');
 }
 
 export const UserMemRepositoryProvider: Provider<UserRepository> = {

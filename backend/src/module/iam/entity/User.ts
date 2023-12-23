@@ -18,6 +18,11 @@ export interface CreateUserData {
 	password: string;
 }
 
+export interface UpdateUserData {
+	name: string;
+	email: string;
+}
+
 export class User extends Entity<UserState> {
 	public static async create(
 		data: CreateUserData,
@@ -50,6 +55,12 @@ export class User extends Entity<UserState> {
 		}
 
 		this.state.lastAuth = new Date();
+	}
+
+	public update(data: UpdateUserData) {
+		this.state.name = data.name;
+		this.state.email = data.email;
+		this.state.updated = new Date();
 	}
 
 	public get name() {
