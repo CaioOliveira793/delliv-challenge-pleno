@@ -34,18 +34,18 @@ export class OrderController {
 	}
 
 	@Get(':id')
-	@HttpCode(HttpStatus.CREATED)
+	@HttpCode(HttpStatus.OK)
 	public async get(
 		@ReqHeader('authorization', AccessTokenPipe) token: Token<string>,
-		@Param('id', new SchemaPipe(UlidSchema)) orderId: string
+		@Param('id', new SchemaPipe(UlidSchema)) id: string
 	): Promise<OrderResource> {
-		await this.authService.getAuthenticatedUser(token);
+		const user = await this.authService.getAuthenticatedUser(token);
 
-		const order = await this.orderRepository.find(orderId);
-		if (!order) {
+		const order = await this.orderRepository.find(id);
+		if (!order || order.creatorId !== user.id) {
 			throw new ResourceNotFound('Order not found', {
 				resource_type: 'ORDER',
-				key: 'id:' + orderId,
+				key: 'id:' + id,
 				path: null,
 			});
 		}
@@ -54,13 +54,11 @@ export class OrderController {
 	}
 
 	@Get()
-	@HttpCode(HttpStatus.CREATED)
+	@HttpCode(HttpStatus.OK)
 	public async list(
 		@ReqHeader('authorization', AccessTokenPipe) token: Token<string>
 	): Promise<Array<OrderResource>> {
-		await this.authService.getAuthenticatedUser(token);
-
-		const orders = await this.orderRepository.listAll();
-		return orders.map(makeOrderResource);
+		const user = await this.authService.getAuthenticatedUser(token);
+		return this.orderRepository.query({ creator_id: user.id });
 	}
 }

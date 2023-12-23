@@ -1,17 +1,34 @@
-import { PrismaClient, Order as PrismaOrder } from '@prisma/client';
+import { PrismaClient, Order as OrderTuple } from '@prisma/client';
 import { Inject, Injectable, Provider } from '@nestjs/common';
-import { Order, OrderState } from '@/module/order/entity/Order';
-import { ORDER_REPOSITORY_PROVIDER, OrderRepository } from '@/module/order/service/OrderRepository';
 import { PRISMA_SERVICE_PROVIDER, PrismaService } from '@/module/base/service/PrismaService';
+import { Order, OrderState } from '@/module/order/entity/Order';
+import {
+	ORDER_REPOSITORY_PROVIDER,
+	OrderQueryParams,
+	OrderRepository,
+} from '@/module/order/service/OrderRepository';
+import { OrderResource } from '@/module/order/dto/Resource';
 
-function dbToOrderState(dbOrder: PrismaOrder): OrderState {
+function tupleToOrderState(tuple: OrderTuple): OrderState {
 	return {
-		created: dbOrder.created,
-		updated: dbOrder.updated,
-		creatorId: dbOrder.creator_id,
-		customer: dbOrder.customer_name,
-		deliveryAddress: dbOrder.delivery_address,
-		status: dbOrder.status,
+		created: tuple.created,
+		updated: tuple.updated,
+		creatorId: tuple.creator_id,
+		customer: tuple.customer_name,
+		deliveryAddress: tuple.delivery_address,
+		status: tuple.status,
+	};
+}
+
+function tupleToOrderResource(tuple: OrderTuple): OrderResource {
+	return {
+		id: tuple.id,
+		created: tuple.created,
+		updated: tuple.updated,
+		creator_id: tuple.creator_id,
+		customer_name: tuple.customer_name,
+		delivery_address: tuple.delivery_address,
+		status: tuple.status,
 	};
 }
 
@@ -41,17 +58,23 @@ export class OrderPrismaRepository implements OrderRepository {
 	}
 
 	public async find(id: string): Promise<Order | null> {
-		const dbOrder = await this.prisma.order.findUnique({
+		const tuple = await this.prisma.order.findUnique({
 			where: { id },
 		});
 
-		if (!dbOrder) return null;
-		return Order.restore(dbOrder.id, dbToOrderState(dbOrder));
+		if (!tuple) return null;
+		return Order.restore(tuple.id, tupleToOrderState(tuple));
 	}
 
-	public async listAll(): Promise<Order[]> {
-		const orders = await this.prisma.order.findMany();
-		return orders.map(order => Order.restore(order.id, dbToOrderState(order)));
+	public async query(params: OrderQueryParams): Promise<OrderResource[]> {
+		const tuples = await this.prisma.order.findMany({
+			where: {
+				creator_id: params.creator_id,
+				status: params.status ? { contains: params.status } : undefined,
+			},
+		});
+
+		return tuples.map(tupleToOrderResource);
 	}
 
 	public async update(order: Order): Promise<void> {

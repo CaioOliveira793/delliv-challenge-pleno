@@ -53,16 +53,16 @@ export class DeliveryEventController {
 	}
 
 	@Get(':id')
-	@HttpCode(HttpStatus.CREATED)
+	@HttpCode(HttpStatus.OK)
 	public async get(
 		@ReqHeader('authorization', AccessTokenPipe) token: Token<string>,
 		@Param('id', new SchemaPipe(UlidSchema)) id: string
 	): Promise<DeliveryEventResource> {
-		await this.authService.getAuthenticatedUser(token);
+		const user = await this.authService.getAuthenticatedUser(token);
 
 		const event = await this.deliveryEventRepository.find(id);
-		if (!event) {
-			throw new ResourceNotFound('Order not found', {
+		if (!event || event.creatorId !== user.id) {
+			throw new ResourceNotFound('Delivery event not found', {
 				resource_type: 'DELIVERY_EVENT',
 				key: 'id:' + id,
 				path: null,
@@ -73,13 +73,11 @@ export class DeliveryEventController {
 	}
 
 	@Get()
-	@HttpCode(HttpStatus.CREATED)
+	@HttpCode(HttpStatus.OK)
 	public async list(
 		@ReqHeader('authorization', AccessTokenPipe) token: Token<string>
 	): Promise<Array<DeliveryEventResource>> {
-		await this.authService.getAuthenticatedUser(token);
-
-		const events = await this.deliveryEventRepository.listAll();
-		return events.map(makeDeliveryEventResource);
+		const user = await this.authService.getAuthenticatedUser(token);
+		return this.deliveryEventRepository.query({ creator_id: user.id });
 	}
 }

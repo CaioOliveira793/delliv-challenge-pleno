@@ -2,7 +2,24 @@ import { Injectable, Optional, Provider } from '@nestjs/common';
 import { uniqueConstraintViolationMessage } from '@/exception/Message';
 import { ResourceNotFound } from '@/exception/resource/ResourceNotFound';
 import { OrderState, Order } from '@/module/order/entity/Order';
-import { OrderRepository, ORDER_REPOSITORY_PROVIDER } from '@/module/order/service/OrderRepository';
+import {
+	OrderRepository,
+	ORDER_REPOSITORY_PROVIDER,
+	OrderQueryParams,
+} from '@/module/order/service/OrderRepository';
+import { OrderResource } from '@/module/order/dto/Resource';
+
+function mapIdStateToOrderResource(id: string, state: OrderState): OrderResource {
+	return {
+		id,
+		created: state.created,
+		updated: state.updated,
+		creator_id: state.creatorId,
+		customer_name: state.customer,
+		delivery_address: state.deliveryAddress,
+		status: state.status,
+	};
+}
 
 @Injectable()
 export class OrderMemRepository implements OrderRepository {
@@ -28,12 +45,18 @@ export class OrderMemRepository implements OrderRepository {
 		return null;
 	}
 
-	// TODO: implement query methods in a `OrderQuery` interface
-	public async listAll(): Promise<Array<Order>> {
-		const orders = [];
+	public async query(params: OrderQueryParams): Promise<Array<OrderResource>> {
+		const orders: Array<OrderResource> = [];
 
 		for (const [id, state] of this.orders.entries()) {
-			orders.push(Order.restore(id, structuredClone(state)));
+			if (params.creator_id && state.creatorId !== params.creator_id) {
+				continue;
+			}
+			if (params.status && !state.status.includes(params.status)) {
+				continue;
+			}
+
+			orders.push(mapIdStateToOrderResource(id, state));
 		}
 
 		return orders;

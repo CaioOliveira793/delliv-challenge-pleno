@@ -1,10 +1,26 @@
-import { uniqueConstraintViolationMessage } from '@/exception/Message';
 import { Optional, Provider } from '@nestjs/common';
+import { uniqueConstraintViolationMessage } from '@/exception/Message';
 import { DeliveryEventState, DeliveryEvent } from '@/module/order/entity/DeliveryEvent';
+import { DeliveryEventResource } from '@/module/order/dto/Resource';
 import {
 	DELIVERY_EVENT_REPOSITORY_PROVIDER,
+	DeliveryEventQueryParams,
 	DeliveryEventRepository,
 } from '@/module/order/service/DeliveryEventRepository';
+
+function mapIdStateToDeliveryEventResource(
+	id: string,
+	state: DeliveryEventState
+): DeliveryEventResource {
+	return {
+		id,
+		created: state.created,
+		creator_id: state.creatorId,
+		order_id: state.orderId,
+		status: state.status,
+		message: state.message,
+	};
+}
 
 export class DeliveryEventMemRepository implements DeliveryEventRepository {
 	protected readonly events: Map<string, DeliveryEventState>;
@@ -29,15 +45,21 @@ export class DeliveryEventMemRepository implements DeliveryEventRepository {
 		return null;
 	}
 
-	// TODO: implement query methods in a `DeliveryEventQuery` interface
-	public async listAll(): Promise<DeliveryEvent[]> {
-		const orders = [];
+	public async query(params: DeliveryEventQueryParams): Promise<Array<DeliveryEventResource>> {
+		const events: Array<DeliveryEventResource> = [];
 
 		for (const [id, state] of this.events.entries()) {
-			orders.push(DeliveryEvent.restore(id, structuredClone(state)));
+			if (params.creator_id && state.creatorId !== params.creator_id) {
+				continue;
+			}
+			if (params.order_id && state.orderId !== params.order_id) {
+				continue;
+			}
+
+			events.push(mapIdStateToDeliveryEventResource(id, state));
 		}
 
-		return orders;
+		return events;
 	}
 
 	private static readonly UNIQUE_ID_MESSAGE = uniqueConstraintViolationMessage('unique_id');
