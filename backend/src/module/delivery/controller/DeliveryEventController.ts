@@ -8,10 +8,6 @@ import { AuthService } from '@/module/iam/service/AuthService';
 import { Token } from '@/module/iam/type/Token';
 import { CreateDeliveryEventData, DeliveryEvent } from '@/module/delivery/entity/DeliveryEvent';
 import { DeliveryEventResource, makeDeliveryEventResource } from '@/module/delivery/dto/Resource';
-import {
-	DELIVERY_EVENT_REPOSITORY_PROVIDER,
-	DeliveryEventRepository,
-} from '@/module/delivery/service/DeliveryEventRepository';
 import { CreateDeliveryEventSchema } from '@/module/delivery/validation/Schema';
 import {
 	ORDER_REPOSITORY_PROVIDER,
@@ -21,8 +17,6 @@ import {
 @Controller('event')
 export class DeliveryEventController {
 	constructor(
-		@Inject(DELIVERY_EVENT_REPOSITORY_PROVIDER)
-		private readonly deliveryEventRepository: DeliveryEventRepository,
 		@Inject(ORDER_REPOSITORY_PROVIDER)
 		private readonly orderRepository: OrderRepository,
 		private readonly authService: AuthService
@@ -48,9 +42,7 @@ export class DeliveryEventController {
 		const event = DeliveryEvent.create(data, user.id);
 		order.updateStatus(event.status);
 
-		// FIXME: open a transaction to write both values
-		await this.deliveryEventRepository.insert(event);
-		await this.orderRepository.update(order);
+		await this.orderRepository.insertEvent(event, order);
 
 		return makeDeliveryEventResource(event);
 	}
@@ -63,7 +55,7 @@ export class DeliveryEventController {
 	): Promise<DeliveryEventResource> {
 		const user = await this.authService.getAuthenticatedUser(token);
 
-		const event = await this.deliveryEventRepository.find(id);
+		const event = await this.orderRepository.findEvent(id);
 		if (!event || event.creatorId !== user.id) {
 			throw new ResourceNotFound({
 				resource_type: 'DELIVERY_EVENT',
@@ -81,6 +73,6 @@ export class DeliveryEventController {
 		@ReqHeader('authorization', AccessTokenPipe) token: Token<string>
 	): Promise<Array<DeliveryEventResource>> {
 		const user = await this.authService.getAuthenticatedUser(token);
-		return this.deliveryEventRepository.query({ creator_id: user.id });
+		return this.orderRepository.queryEvents({ creator_id: user.id });
 	}
 }
