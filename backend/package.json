@@ -29,6 +29,7 @@
 		"build:prisma": "prisma generate",
 		"test": "jest",
 		"test:cov": "jest --coverage",
+		"test:full-cov": "jest --coverage --collectCoverageFrom '<rootDir>/src/**/*'",
 		"check": "run-z check:lint,check:type",
 		"check:lint": "eslint . --ext ts,json",
 		"check:type": "tsc --noEmit",
