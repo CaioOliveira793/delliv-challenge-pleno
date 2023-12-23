@@ -25,7 +25,7 @@
 		"start": "node build/main.js",
 		"start:dev": "nodemon --ext ts,json --watch src --exec 'run-z clear:build build start'",
 		"build": "run-z build:src,build:prisma",
-		"build:src": "rollup --config rollup/dev.config.js",
+		"build:src": "rollup --config rollup.config.js",
 		"build:prisma": "prisma generate",
 		"test": "jest",
 		"test:cov": "jest --coverage",
