@@ -1,5 +1,3 @@
-import { describe, it } from 'node:test';
-import assert from 'node:assert';
 import { Schema } from 'zod';
 import { ulid } from 'ulid';
 import { UlidSchema } from '@/validation/Schema';
@@ -29,8 +27,8 @@ describe('Token type', () => {
 		const id = ulid();
 		const token = await Token.new(id, fakeEncripter);
 
-		assert.strictEqual(`###${id}###`, token.toString());
-		assert.strictEqual(id, token.data);
+		expect(`###${id}###`).toStrictEqual(token.toString());
+		expect(id).toStrictEqual(token.data);
 	});
 
 	it('create a token from a token cypher', async () => {
@@ -39,7 +37,7 @@ describe('Token type', () => {
 
 		const token = await Token.verify(tokenCypher, fakeEncripter, UlidSchema);
 
-		assert.strictEqual(tokenCypher, token.toString());
-		assert.strictEqual(id, token.data);
+		expect(tokenCypher).toStrictEqual(token.toString());
+		expect(id).toStrictEqual(token.data);
 	});
 });
