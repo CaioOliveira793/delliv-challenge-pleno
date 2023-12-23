@@ -1,5 +1,5 @@
 import { randomBytes } from 'node:crypto';
-import { default as argon2 } from 'argon2';
+import { hash as argon2hash, verify as argon2verify } from 'argon2';
 import { Injectable, Provider } from '@nestjs/common';
 import {
 	PASSWORD_ENCRYPTION_PROVIDER,
@@ -16,7 +16,7 @@ const enum Argon2AlgorithmType {
 export class Argon2EncryptionService implements PasswordEncryptionService {
 	public async hash(plainText: string): Promise<string> {
 		const salt = randomBytes(Argon2EncryptionService.SALT_LENGTH);
-		return argon2.hash(plainText, {
+		return argon2hash(plainText, {
 			salt,
 			saltLength: Argon2EncryptionService.SALT_LENGTH,
 			hashLength: Argon2EncryptionService.HASH_LENGTH,
@@ -29,7 +29,7 @@ export class Argon2EncryptionService implements PasswordEncryptionService {
 	}
 
 	public async compare(hash: string, plainText: string): Promise<boolean> {
-		return argon2.verify(hash, plainText);
+		return argon2verify(hash, plainText);
 	}
 
 	private static readonly SALT_LENGTH = 16;

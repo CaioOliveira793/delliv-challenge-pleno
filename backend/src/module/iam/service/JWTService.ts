@@ -1,4 +1,4 @@
-import JWT from 'jsonwebtoken';
+import { VerifyErrors, verify as jwtVerify, sign as jwtSign } from 'jsonwebtoken';
 
 export interface Payload<T> {
 	/** Custom payload */
@@ -49,7 +49,7 @@ export class JWTService {
 
 	public verify<T>(token: string): Promise<Payload<T>> {
 		return new Promise((resolve, reject) => {
-			JWT.verify(token.toString(), this.secret, (err: JWT.VerifyErrors | null, decode) => {
+			jwtVerify(token.toString(), this.secret, (err: VerifyErrors | null, decode) => {
 				if (err) {
 					reject(err);
 					return;
@@ -61,6 +61,6 @@ export class JWTService {
 	}
 
 	public sign<T>(data: T, expiresIn: number): string {
-		return JWT.sign({ data }, this.secret, { expiresIn, issuer: JWT_ISSUER });
+		return jwtSign({ data }, this.secret, { expiresIn, issuer: JWT_ISSUER });
 	}
 }

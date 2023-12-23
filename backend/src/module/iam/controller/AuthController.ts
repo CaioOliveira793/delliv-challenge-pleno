@@ -1,15 +1,20 @@
 import { Controller, HttpCode, HttpStatus, Inject, Post } from '@nestjs/common';
+import { ReqCredential } from '@/decorator/ReqCredential';
 import { ResourceNotFound } from '@/exception/resource/ResourceNotFound';
+import { Token } from '@/module/iam/type/Token';
+import { USER_REPOSITORY_PROVIDER, UserRepository } from '@/module/iam/service/UserRepository';
 import {
 	PASSWORD_ENCRYPTION_PROVIDER,
 	PasswordEncryptionService,
 	TOKEN_ENCRYPTION_PROVIDER,
 	TokenEncryptionService,
 } from '@/module/iam/service/EncryptionService';
-import { USER_REPOSITORY_PROVIDER, UserRepository } from '@/module/iam/service/UserRepository';
-import { Token } from '@/module/iam/type/Token';
-import { AuthResponse, UserCredential, makeUserResource } from '@/module/iam/dto/Resource';
-import { ReqCredential } from '@/decorator/ReqCredential';
+import {
+	AuthResponse,
+	USER_RESOURCE,
+	UserCredential,
+	makeUserResource,
+} from '@/module/iam/dto/Resource';
 
 @Controller('auth')
 export class AuthController {
@@ -28,7 +33,7 @@ export class AuthController {
 		const user = await this.userRepository.findByEmail(credential.email);
 		if (!user) {
 			throw new ResourceNotFound({
-				resource_type: 'USER',
+				resource_type: USER_RESOURCE,
 				key: 'email:' + credential.email,
 				path: '.email',
 			});

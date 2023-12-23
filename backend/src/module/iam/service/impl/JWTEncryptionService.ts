@@ -11,8 +11,8 @@ import {
 
 @Injectable()
 export class JWTEncryptionService implements TokenEncryptionService {
-	constructor(config: ConfigService<EnvVariables, true>) {
-		this.jwtService = new JWTService(config.get('TOKEN_SECRET'));
+	public constructor(secret: string) {
+		this.jwtService = new JWTService(secret);
 	}
 
 	public async verify<T>(cypher: string, schema: Schema<T>): Promise<T> {
@@ -38,7 +38,14 @@ export class JWTEncryptionService implements TokenEncryptionService {
 	private readonly jwtService: JWTService;
 }
 
+function jwtEncryptionServiceFactory(
+	config: ConfigService<EnvVariables, true>
+): JWTEncryptionService {
+	return new JWTEncryptionService(config.get<string>('TOKEN_SECRET'));
+}
+
 export const JWTEncryptionProvider: Provider<TokenEncryptionService> = {
 	provide: TOKEN_ENCRYPTION_PROVIDER,
-	useClass: JWTEncryptionService,
+	useFactory: jwtEncryptionServiceFactory,
+	inject: [ConfigService],
 };

@@ -5,6 +5,8 @@ export interface UserCredential {
 	password: string;
 }
 
+export const USER_RESOURCE = 'USER';
+
 export interface UserResource {
 	id: string;
 	created: Date;
