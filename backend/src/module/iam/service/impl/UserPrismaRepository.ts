@@ -2,7 +2,7 @@ import { Inject, Injectable, Provider } from '@nestjs/common';
 import { PrismaClient, User as PrismaUser } from '@prisma/client';
 import { User, UserState } from '@/module/iam/entity/User';
 import { USER_REPOSITORY_PROVIDER, UserRepository } from '@/module/iam/service/UserRepository';
-import { PRISMA_CLIENT_PROVIDER } from '@/module/base/provider/PrismaClientProvider';
+import { PRISMA_SERVICE_PROVIDER, PrismaService } from '@/module/base/service/PrismaService';
 
 function dbToUserState(dbuser: PrismaUser): UserState {
 	return {
@@ -20,10 +20,10 @@ export class UserPrismaRepository implements UserRepository {
 	private readonly prisma: PrismaClient;
 
 	constructor(
-		@Inject(PRISMA_CLIENT_PROVIDER)
-		prisma: PrismaClient
+		@Inject(PRISMA_SERVICE_PROVIDER)
+		prismaService: PrismaService
 	) {
-		this.prisma = prisma;
+		this.prisma = prismaService.prisma;
 	}
 
 	public async insert(user: User): Promise<void> {

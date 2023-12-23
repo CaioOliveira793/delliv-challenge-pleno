@@ -5,7 +5,7 @@ import {
 	DeliveryEventRepository,
 } from '@/module/order/service/DeliveryEventRepository';
 import { DeliveryEvent, DeliveryEventState } from '@/module/order/entity/DeliveryEvent';
-import { PRISMA_CLIENT_PROVIDER } from '@/module/base/provider/PrismaClientProvider';
+import { PRISMA_SERVICE_PROVIDER, PrismaService } from '@/module/base/service/PrismaService';
 
 function mapDBtoState(db: DeliveryEventDb): DeliveryEventState {
 	return {
@@ -22,10 +22,10 @@ export class DeliveryEventPrismaRepository implements DeliveryEventRepository {
 	private readonly prisma: PrismaClient;
 
 	constructor(
-		@Inject(PRISMA_CLIENT_PROVIDER)
-		prisma: PrismaClient
+		@Inject(PRISMA_SERVICE_PROVIDER)
+		prismaService: PrismaService
 	) {
-		this.prisma = prisma;
+		this.prisma = prismaService.prisma;
 	}
 
 	public async insert(event: DeliveryEvent): Promise<void> {

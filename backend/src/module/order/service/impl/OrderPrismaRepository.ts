@@ -1,8 +1,8 @@
 import { PrismaClient, Order as PrismaOrder } from '@prisma/client';
 import { Inject, Injectable, Provider } from '@nestjs/common';
-import { PRISMA_CLIENT_PROVIDER } from '@/module/base/provider/PrismaClientProvider';
 import { Order, OrderState } from '@/module/order/entity/Order';
 import { ORDER_REPOSITORY_PROVIDER, OrderRepository } from '@/module/order/service/OrderRepository';
+import { PRISMA_SERVICE_PROVIDER, PrismaService } from '@/module/base/service/PrismaService';
 
 function dbToOrderState(dbOrder: PrismaOrder): OrderState {
 	return {
@@ -20,10 +20,10 @@ export class OrderPrismaRepository implements OrderRepository {
 	private readonly prisma: PrismaClient;
 
 	constructor(
-		@Inject(PRISMA_CLIENT_PROVIDER)
-		prisma: PrismaClient
+		@Inject(PRISMA_SERVICE_PROVIDER)
+		prismaService: PrismaService
 	) {
-		this.prisma = prisma;
+		this.prisma = prismaService.prisma;
 	}
 
 	public async insert(order: Order): Promise<void> {
