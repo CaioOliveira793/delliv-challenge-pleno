@@ -1,0 +1,197 @@
+@layer module {
+	.heading1 {
+		--heading1-font-size: calc(var(--font-size) * 3.2);
+
+		font-weight: var(--font-weight-light);
+		font-size: var(--heading1-font-size);
+		line-height: calc(var(--line-height) * 1.2);
+		letter-spacing: var(--letter-spacing-wider);
+	}
+
+	.heading2 {
+		--heading2-font-size: calc(var(--font-size) * 2.5);
+
+		font-weight: var(--font-weight-light);
+		font-size: var(--heading2-font-size);
+		line-height: calc(var(--line-height) * 1.2);
+		letter-spacing: var(--letter-spacing-wider);
+	}
+
+	.heading3 {
+		--heading3-font-size: calc(var(--font-size) * 2);
+
+		font-weight: var(--font-weight-regular);
+		font-size: var(--heading3-font-size);
+		line-height: calc(var(--line-height) * 1.2);
+		letter-spacing: var(--letter-spacing-wider);
+	}
+
+	.heading4 {
+		--heading4-font-size: calc(var(--font-size) * 1.65);
+
+		font-weight: var(--font-weight-regular);
+		font-size: var(--heading4-font-size);
+		line-height: calc(var(--line-height) * 1.2);
+		letter-spacing: var(--letter-spacing-wide);
+	}
+
+	.heading5 {
+		--heading5-font-size: calc(var(--font-size) * 1.35);
+
+		font-weight: var(--font-weight-regular);
+		font-size: var(--heading5-font-size);
+		line-height: calc(var(--line-height) * 1.2);
+		letter-spacing: var(--letter-spacing-wide);
+	}
+
+	.heading6 {
+		--heading6-font-size: calc(var(--font-size) * 1.1);
+
+		font-weight: var(--font-weight-medium);
+		font-size: var(--heading6-font-size);
+		line-height: calc(var(--line-height) * 1.2);
+		letter-spacing: var(--letter-spacing-wide);
+	}
+
+	.subtitle {
+		--subtitle-font-size: calc(var(--font-size) * 1);
+
+		font-weight: var(--font-weight-regular);
+		font-size: var(--subtitle-font-size);
+		line-height: calc(var(--line-height) * 1.15);
+		letter-spacing: var(--letter-spacing-normal);
+	}
+
+	.body1 {
+		--body1-font-size: calc(var(--font-size) * 1);
+
+		font-weight: var(--font-weight-regular);
+		font-size: var(--body1-font-size);
+		line-height: calc(var(--line-height) * 1.1);
+		letter-spacing: var(--letter-spacing-tight);
+	}
+
+	.body2 {
+		--body2-font-size: calc(var(--font-size) * 0.875);
+
+		font-weight: var(--font-weight-regular);
+		font-size: var(--body2-font-size);
+		line-height: calc(var(--line-height) * 1.1);
+		letter-spacing: var(--letter-spacing-tight);
+	}
+
+	.button_small {
+		--button-font-size: calc(var(--font-size) * 0.75);
+
+		font-weight: var(--font-weight-medium);
+		font-size: var(--button-font-size);
+		line-height: calc(var(--line-height) * 1.2);
+		letter-spacing: var(--letter-spacing-normal);
+		text-transform: uppercase;
+	}
+
+	.button_medium {
+		--button-font-size: calc(var(--font-size) * 0.875);
+
+		font-weight: var(--font-weight-medium);
+		font-size: var(--button-font-size);
+		line-height: calc(var(--line-height) * 1.2);
+		letter-spacing: var(--letter-spacing-wide);
+		text-transform: uppercase;
+	}
+
+	.button_large {
+		--button-font-size: calc(var(--font-size) * 1);
+
+		font-weight: var(--font-weight-medium);
+		font-size: var(--button-font-size);
+		line-height: calc(var(--line-height) * 1.2);
+		letter-spacing: var(--letter-spacing-wider);
+		text-transform: uppercase;
+	}
+
+	.error_message,
+	.helper_text,
+	.caption,
+	.tag_small {
+		--caption-font-size: calc(var(--font-size) * 0.75);
+
+		font-weight: var(--font-weight-regular);
+		font-size: var(--caption-font-size);
+		line-height: calc(var(--line-height) * 1.1);
+		letter-spacing: var(--letter-spacing-tighter);
+	}
+
+	.tag_small {
+		line-height: calc(var(--line-height) * 1);
+	}
+
+	.tag_medium {
+		--tag-medium-font-size: calc(var(--font-size) * 0.875);
+
+		font-weight: var(--font-weight-regular);
+		font-size: var(--tag-medium-font-size);
+		line-height: calc(var(--line-height) * 1);
+		letter-spacing: var(--letter-spacing-tighter);
+	}
+
+	.tag_large {
+		--tag-medium-font-size: calc(var(--font-size) * 1);
+
+		font-weight: var(--font-weight-regular);
+		font-size: var(--tag-medium-font-size);
+		line-height: calc(var(--line-height) * 1);
+		letter-spacing: var(--letter-spacing-tighter);
+	}
+
+	.input_small {
+		--input-font-size: calc(var(--font-size) * 0.75);
+
+		font-weight: var(--font-weight-regular);
+		font-size: var(--input-font-size);
+		line-height: calc(var(--line-height) * 1.05);
+		letter-spacing: var(--letter-spacing-normal);
+	}
+
+	.input_medium {
+		--input-font-size: calc(var(--font-size) * 0.875);
+
+		font-weight: var(--font-weight-regular);
+		font-size: var(--input-font-size);
+		line-height: calc(var(--line-height) * 1.05);
+		letter-spacing: var(--letter-spacing-normal);
+	}
+
+	.input_large {
+		--input-font-size: calc(var(--font-size) * 1);
+
+		font-weight: var(--font-weight-regular);
+		font-size: var(--input-font-size);
+		line-height: calc(var(--line-height) * 1.05);
+		letter-spacing: var(--letter-spacing-normal);
+	}
+
+	.italic {
+		font-style: italic;
+	}
+
+	.helper_text {
+		color: var(--text-color-2);
+	}
+
+	.error_message {
+		color: var(--failure-color);
+	}
+
+	.hidden_text {
+		color: var(--disable-overlay);
+	}
+
+	.attr_name {
+		font-weight: var(--font-weight-regular);
+	}
+
+	.attr_value {
+		font-weight: var(--font-weight-medium);
+	}
+}
