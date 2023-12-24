@@ -1,4 +1,4 @@
-import OrderItem, { Order } from '@/component/order/OrderItem';
+import OrderDisplay, { Order } from '@/component/order/OrderDisplay';
 
 export default function SearchOrder() {
 	const orders: Array<Order> = [];
@@ -16,7 +16,7 @@ export default function SearchOrder() {
 
 			<div>
 				{orders.map(order => (
-					<OrderItem order={order} />
+					<OrderDisplay order={order} />
 				))}
 			</div>
 		</main>

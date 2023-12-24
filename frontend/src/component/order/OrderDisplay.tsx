@@ -10,14 +10,15 @@ export interface Order {
 	delivery_address: string;
 }
 
-interface OrderItemParams {
+interface OrderDisplayProps {
 	order: Order;
+	show_id?: boolean;
 }
 
-export default function OrderItem({ order }: OrderItemParams) {
+export default function OrderDisplay({ order, show_id = true }: OrderDisplayProps) {
 	return (
 		<div>
-			<Link to={AppPath.Order + '/' + order.id}>{'#' + order.id}</Link>
+			{show_id ? <Link to={AppPath.Order + '/' + order.id}>{'#' + order.id}</Link> : null}
 			<p>Status: {order.status}</p>
 			<div>
 				<p>Cliente: {order.customer_name}</p>
