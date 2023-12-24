@@ -1,7 +1,7 @@
 import TopNavbar from '@/component/app/TopNavbar';
 import TitleContainer from '@/component/app/TitleContainer';
 import ContainerStyle from '@/style/util/container.module.css';
-import RootStyle from '@/style/page/root.module.css';
+import RootStyle from '@/style/page/Root.module.css';
 import { classes } from '@/style/helper';
 
 export default function Root() {
