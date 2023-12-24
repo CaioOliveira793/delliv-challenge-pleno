@@ -19,7 +19,10 @@
     "start:dev": "vite",
     "check:lint": "eslint . --ext ts,tsx",
     "check:type": "tsc --noEmit",
-    "build": "tsc && vite build",
+    "check": "run-z check:lint,check:type",
+    "test": "vitest",
+    "build": "run-z check:type build:src",
+    "build:src": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -42,6 +45,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
     "postcss": "^8.4.32",
+    "run-z": "^2.0.0",
     "typescript": "^5.2.2",
     "vite": "^5.0.8",
     "vitest": "^1.1.0"
