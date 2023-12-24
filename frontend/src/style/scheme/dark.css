@@ -1,0 +1,139 @@
+:root {
+	--color-saturation-dark: 59%;
+	--color-lightness-dark: 36%;
+
+	/* brand color */
+	--brand-color-dark: hsl(var(--brand-color-original-hue) var(--color-saturation-dark) var(--color-lightness-dark));
+	--hover-brand-color-dark: hsl(var(--brand-color-original-hue) calc(var(--color-saturation-dark) + var(--hover-action-color-offset)) calc(var(--color-lightness-dark) + var(--hover-action-color-offset)));
+	--active-brand-color-dark: hsl(var(--brand-color-original-hue) calc(var(--color-saturation-dark) + var(--active-action-color-offset)) calc(var(--color-lightness-dark) + var(--active-action-color-offset)));
+	--focus-brand-color-dark: hsl(var(--brand-color-original-hue) calc(var(--color-saturation-dark) + var(--focus-action-color-offset)) calc(var(--color-lightness-dark) + var(--focus-action-color-offset)));
+	--select-brand-color-dark: hsl(var(--brand-color-original-hue) calc(var(--color-saturation-dark) + var(--select-action-color-offset)) calc(var(--color-lightness-dark) + var(--select-action-color-offset)));
+	--disable-brand-color-dark: hsl(var(--brand-color-original-hue) calc(var(--color-saturation-dark) + var(--disable-action-color-offset)) calc(var(--color-lightness-dark) + var(--disable-action-color-offset)));
+
+	/* info color */
+	--info-color-dark: hsl(var(--info-color-hue) var(--color-saturation-dark) var(--color-lightness-dark));
+	--hover-info-color-dark: hsl(var(--info-color-hue) calc(var(--color-saturation-dark) + var(--hover-action-color-offset)) calc(var(--color-lightness-dark) + var(--hover-action-color-offset)));
+	--active-info-color-dark: hsl(var(--info-color-hue) calc(var(--color-saturation-dark) + var(--active-action-color-offset)) calc(var(--color-lightness-dark) + var(--active-action-color-offset)));
+	--focus-info-color-dark: hsl(var(--info-color-hue) calc(var(--color-saturation-dark) + var(--focus-action-color-offset)) calc(var(--color-lightness-dark) + var(--focus-action-color-offset)));
+	--select-info-color-dark: hsl(var(--info-color-hue) calc(var(--color-saturation-dark) + var(--select-action-color-offset)) calc(var(--color-lightness-dark) + var(--select-action-color-offset)));
+	--disable-info-color-dark: hsl(var(--info-color-hue) calc(var(--color-saturation-dark) + var(--disable-action-color-offset)) calc(var(--color-lightness-dark) + var(--disable-action-color-offset)));
+
+	/* success color */
+	--success-color-dark: hsl(var(--success-color-hue) var(--color-saturation-dark) var(--color-lightness-dark));
+	--hover-success-color-dark: hsl(var(--success-color-hue) calc(var(--color-saturation-dark) + var(--hover-action-color-offset)) calc(var(--color-lightness-dark) + var(--hover-action-color-offset)));
+	--active-success-color-dark: hsl(var(--success-color-hue) calc(var(--color-saturation-dark) + var(--active-action-color-offset)) calc(var(--color-lightness-dark) + var(--active-action-color-offset)));
+	--focus-success-color-dark: hsl(var(--success-color-hue) calc(var(--color-saturation-dark) + var(--focus-action-color-offset)) calc(var(--color-lightness-dark) + var(--focus-action-color-offset)));
+	--select-success-color-dark: hsl(var(--success-color-hue) calc(var(--color-saturation-dark) + var(--select-action-color-offset)) calc(var(--color-lightness-dark) + var(--select-action-color-offset)));
+	--disable-success-color-dark: hsl(var(--success-color-hue) calc(var(--color-saturation-dark) + var(--disable-action-color-offset)) calc(var(--color-lightness-dark) + var(--disable-action-color-offset)));
+
+	/* warning color */
+	--warning-color-dark: hsl(var(--warning-color-hue) var(--color-saturation-dark) var(--color-lightness-dark));
+	--hover-warning-color-dark: hsl(var(--warning-color-hue) calc(var(--color-saturation-dark) + var(--hover-action-color-offset)) calc(var(--color-lightness-dark) + var(--hover-action-color-offset)));
+	--active-warning-color-dark: hsl(var(--warning-color-hue) calc(var(--color-saturation-dark) + var(--active-action-color-offset)) calc(var(--color-lightness-dark) + var(--active-action-color-offset)));
+	--focus-warning-color-dark: hsl(var(--warning-color-hue) calc(var(--color-saturation-dark) + var(--focus-action-color-offset)) calc(var(--color-lightness-dark) + var(--focus-action-color-offset)));
+	--select-warning-color-dark: hsl(var(--warning-color-hue) calc(var(--color-saturation-dark) + var(--select-action-color-offset)) calc(var(--color-lightness-dark) + var(--select-action-color-offset)));
+	--disable-warning-color-dark: hsl(var(--warning-color-hue) calc(var(--color-saturation-dark) + var(--disable-action-color-offset)) calc(var(--color-lightness-dark) + var(--disable-action-color-offset)));
+
+	/* failure color */
+	--failure-color-dark: hsl(var(--failure-color-hue) var(--color-saturation-dark) var(--color-lightness-dark));
+	--hover-failure-color-dark: hsl(var(--failure-color-hue) calc(var(--color-saturation-dark) + var(--hover-action-color-offset)) calc(var(--color-lightness-dark) + var(--hover-action-color-offset)));
+	--active-failure-color-dark: hsl(var(--failure-color-hue) calc(var(--color-saturation-dark) + var(--active-action-color-offset)) calc(var(--color-lightness-dark) + var(--active-action-color-offset)));
+	--focus-failure-color-dark: hsl(var(--failure-color-hue) calc(var(--color-saturation-dark) + var(--focus-action-color-offset)) calc(var(--color-lightness-dark) + var(--focus-action-color-offset)));
+	--select-failure-color-dark: hsl(var(--failure-color-hue) calc(var(--color-saturation-dark) + var(--select-action-color-offset)) calc(var(--color-lightness-dark) + var(--select-action-color-offset)));
+	--disable-failure-color-dark: hsl(var(--failure-color-hue) calc(var(--color-saturation-dark) + var(--disable-action-color-offset)) calc(var(--color-lightness-dark) + var(--disable-action-color-offset)));
+
+	/* action overlay */
+	--hover-overlay-dark: rgb(255 255 255 / var(--hover-overlay-transparency));
+	--active-overlay-dark: rgb(255 255 255 / var(--active-overlay-transparency));
+	--focus-overlay-dark: rgb(255 255 255 / var(--focus-overlay-transparency));
+	--select-overlay-dark: rgb(255 255 255 / var(--select-overlay-transparency));
+	--disable-overlay-dark: rgb(255 255 255 / var(--disable-overlay-transparency));
+
+	/* text color */
+	--text-color-1-dark: hsl(var(--brand-color-original-hue) 15% 85%);
+	--text-color-2-dark: hsl(var(--brand-color-original-hue) 5% 65%);
+	--text-link-color-dark: hsl(225 80% 85%);
+
+	/* surface color */
+	--surface-color-1-dark: hsl(var(--brand-color-original-hue) 10% 10%);
+	--surface-color-2-dark: hsl(var(--brand-color-original-hue) 10% 15%);
+	--surface-color-3-dark: hsl(var(--brand-color-original-hue) 5% 20%);
+	--surface-color-4-dark: hsl(var(--brand-color-original-hue) 5% 25%);
+	--surface-disable-color-dark: #707070;
+
+	/* elevation */
+	--border-color-dark: hsl(var(--brand-color-original-hue) 10% 40%);
+	--shadow-color-hsl-dark: var(--brand-color-original-hue) 70% 1%;
+	--shadow-strength-dark: .2;
+}
+
+[color-scheme="dark"] {
+	color-scheme: dark;
+
+	/* brand color */
+	--brand-color: var(--brand-color-dark);
+	--color-saturation: var(--color-saturation-dark);
+	--color-lightness: var(--color-lightness-dark);
+
+	--hover-brand-color: var(--hover-brand-color-dark);
+	--active-brand-color: var(--active-brand-color-dark);
+	--focus-brand-color: var(--focus-brand-color-dark);
+	--select-brand-color: var(--select-brand-color-dark);
+	--disable-brand-color: var(--disable-brand-color-dark);
+
+	/* info color */
+	--info-color: var(--info-color-dark);
+	--hover-info-color: var(--hover-info-color-dark);
+	--active-info-color: var(--active-info-color-dark);
+	--focus-info-color: var(--focus-info-color-dark);
+	--select-info-color: var(--select-info-color-dark);
+	--disable-info-color: var(--disable-info-color-dark);
+
+	/* success color */
+	--success-color: var(--success-color-dark);
+	--hover-success-color: var(--hover-success-color-dark);
+	--active-success-color: var(--active-success-color-dark);
+	--focus-success-color: var(--focus-success-color-dark);
+	--select-success-color: var(--select-success-color-dark);
+	--disable-success-color: var(--disable-success-color-dark);
+
+	/* warning color */
+	--warning-color: var(--warning-color-dark);
+	--hover-warning-color: var(--hover-warning-color-dark);
+	--active-warning-color: var(--active-warning-color-dark);
+	--focus-warning-color: var(--focus-warning-color-dark);
+	--select-warning-color: var(--select-warning-color-dark);
+	--disable-warning-color: var(--disable-warning-color-dark);
+
+	/* failure color */
+	--failure-color: var(--failure-color-dark);
+	--hover-failure-color: var(--hover-failure-color-dark);
+	--active-failure-color: var(--active-failure-color-dark);
+	--focus-failure-color: var(--focus-failure-color-dark);
+	--select-failure-color: var(--select-failure-color-dark);
+	--disable-failure-color: var(--disable-failure-color-dark);
+
+	/* action overlay */
+	--active-overlay: var(--active-overlay-dark);
+	--select-overlay: var(--select-overlay-dark);
+	--focus-overlay: var(--focus-overlay-dark);
+	--hover-overlay: var(--hover-overlay-dark);
+	--disable-overlay: var(--disable-overlay-dark);
+
+	/* text color */
+	--text-color-1: var(--text-color-1-dark);
+	--text-color-2: var(--text-color-2-dark);
+	--text-link-color: var(--text-link-color-dark);
+
+	/* surface color */
+	--surface-color-1: var(--surface-color-1-dark);
+	--surface-color-2: var(--surface-color-2-dark);
+	--surface-color-3: var(--surface-color-3-dark);
+	--surface-color-4: var(--surface-color-4-dark);
+	--surface-disable-color: var(--surface-disable-color-dark);
+
+	/* elevation */
+	--border-color: var(--border-color-dark);
+	--shadow-color-hsl: var(--shadow-color-hsl-dark);
+	--shadow-strength: var(--shadow-strength-dark);
+}
