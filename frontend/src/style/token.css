@@ -3,6 +3,8 @@
 :root {
 	/* spacing */
 	--spacing-unit: 8px;
+	--padding-unit: var(--spacing-unit);
+	--margin-unit: var(--spacing-unit);
 	--border-radius-unit: 4px;
 	--full-border-radius: 99999px;
 

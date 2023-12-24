@@ -14,6 +14,19 @@ export default defineConfig({
 			'@test': new URL('./test', import.meta.url).pathname,
 		},
 	},
+	build: {
+		// Produce a better css output size, since most of the styles are defined in
+		// the global and token files, which reduce the style duplication for each page.
+		// https://vitejs.dev/config/build-options.html#build-csscodesplit
+		cssCodeSplit: false,
+		// rollupOptions: {
+		// 	output: {
+		// 		inlineDynamicImports: true,
+		// 		entryFileNames: '[name].js',
+		// 		assetFileNames: '[name].[ext]',
+		// 	},
+		// },
+	},
 	server: {
 		port: 3000,
 		strictPort: true,

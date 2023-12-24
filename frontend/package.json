@@ -29,6 +29,7 @@
     "normalize.css": "^8.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.12.0",
     "react-router-dom": "^6.21.1"
   },
   "devDependencies": {
@@ -48,7 +49,7 @@
     "postcss": "^8.4.32",
     "run-z": "^2.0.0",
     "typescript": "^5.2.2",
-    "vite": "^5.0.8",
+    "vite": "^5.0.10",
     "vitest": "^1.1.0"
   },
   "browserslist": [
