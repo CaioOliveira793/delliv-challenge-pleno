@@ -1,0 +1,448 @@
+@layer module {
+	.button {
+		--button-color: initial;
+		--button-bg-color: initial;
+		--button-border-color: initial;
+		--button-shadow: initial;
+		--button-padding: initial;
+		--button-gap: initial;
+
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		cursor: pointer;
+		user-select: none;
+		vertical-align: middle;
+		text-transform: uppercase;
+		gap: var(--button-gap);
+		padding: var(--button-padding);
+		border-radius: var(--border-radius-unit);
+		color: var(--button-color);
+		border: 1px solid var(--button-border-color);
+		background-color: var(--button-bg-color);
+		box-shadow: var(--button-shadow);
+		transition: all 100ms ease-in-out;
+	}
+
+	.button svg {
+		fill: currentcolor;
+	}
+
+	.button[fullwidth] {
+		width: 100%;
+	}
+
+	.outlined,
+	.icon_outlined {
+		--button-bg-color: transparent;
+	}
+
+	.contained,
+	.icon_contained {
+		--button-color: var(--surface-color-1);
+		--button-border-color: var(--button-bg-color);
+	}
+
+	.text,
+	.icon_flat {
+		--button-bg-color: transparent;
+		--button-border-color: transparent;
+	}
+
+	.icon_outlined,
+	.icon_contained,
+	.icon_flat {
+		--button-shadow: 0;
+		width: fit-content;
+	}
+
+
+	/* [s-color] */
+	.outlined.primary,
+	.icon_outlined.primary {
+		--button-color: var(--brand-color);
+		--button-border-color: var(--button-color);
+	}
+
+	.contained.primary,
+	.icon_contained.primary {
+		--button-bg-color: var(--brand-color);
+	}
+
+	.text.primary,
+	.icon_flat.primary {
+		--button-color: var(--brand-color);
+	}
+
+
+	.outlined.info,
+	.icon_outlined.info {
+		--button-color: var(--info-color);
+		--button-border-color: var(--button-color);
+	}
+
+	.contained.info,
+	.icon_contained.info {
+		--button-bg-color: var(--info-color);
+	}
+
+	.text.info,
+	.icon_flat.info {
+		--button-color: var(--info-color);
+	}
+
+
+	.outlined.success,
+	.icon_outlined.success {
+		--button-color: var(--success-color);
+		--button-border-color: var(--button-color);
+	}
+
+	.contained.success,
+	.icon_contained.success {
+		--button-bg-color: var(--success-color);
+	}
+
+	.text.success,
+	.icon_flat.success {
+		--button-color: var(--success-color);
+	}
+
+
+	.outlined.warning,
+	.icon_outlined.warning {
+		--button-color: var(--warning-color);
+		--button-border-color: var(--button-color);
+	}
+
+	.contained.warning,
+	.icon_contained.warning {
+		--button-bg-color: var(--warning-color);
+	}
+
+	.text.warning,
+	.icon_flat.warning {
+		--button-color: var(--warning-color);
+	}
+
+
+	.outlined.error,
+	.icon_outlined.error {
+		--button-color: var(--failure-color);
+		--button-border-color: var(--button-color);
+	}
+
+	.contained.error,
+	.icon_contained.error {
+		--button-bg-color: var(--failure-color);
+	}
+
+	.text.error,
+	.icon_flat.error {
+		--button-color: var(--failure-color);
+	}
+
+
+	.outlined.current,
+	.icon_outlined.current {
+		--button-color: currentcolor;
+		--button-border-color: var(--button-color);
+	}
+
+	.contained.current,
+	.icon_contained.current {
+		--button-bg-color: currentcolor;
+	}
+
+	.text.current,
+	.icon_flat.current {
+		--button-color: currentcolor;
+	}
+
+
+	/* loading */
+	.button[loading] {
+		cursor: wait;
+	}
+
+
+	/* :hover */
+	.button:hover {
+		text-decoration: none;
+	}
+
+	.outlined:hover,
+	.icon_outlined:hover {
+		--button-border-color: var(--button-color);
+		--button-bg-color: var(--hover-overlay);
+	}
+
+	.text:hover,
+	.icon_flat:hover {
+		--button-bg-color: var(--hover-overlay);
+	}
+
+	.contained.primary:hover,
+	.icon_contained.primary:hover {
+		--button-bg-color: var(--hover-brand-color);
+	}
+
+	.contained.info:hover,
+	.icon_contained.info:hover {
+		--button-bg-color: var(--hover-info-color);
+	}
+
+	.contained.success:hover,
+	.icon_contained.success:hover {
+		--button-bg-color: var(--hover-success-color);
+	}
+
+	.contained.warning:hover,
+	.icon_contained.warning:hover {
+		--button-bg-color: var(--hover-warning-color);
+	}
+
+	.contained.error:hover,
+	.icon_contained.error:hover {
+		--button-bg-color: var(--hover-failure-color);
+	}
+
+	.contained.current:hover,
+	.icon_contained.current:hover {
+		--button-bg-color: currentcolor;
+	}
+
+
+	/* :focus */
+	.outlined:focus,
+	.text:focus,
+	.icon_outlined:focus,
+	.icon_flat:focus {
+		--button-bg-color: var(--focus-overlay);
+	}
+
+	.contained.primary:focus,
+	.icon_contained.primary:focus {
+		--button-bg-color: var(--focus-brand-color);
+	}
+
+	.contained.info:focus,
+	.icon_contained.info:focus {
+		--button-bg-color: var(--focus-info-color);
+	}
+
+	.contained.success:focus,
+	.icon_contained.success:focus {
+		--button-bg-color: var(--focus-success-color);
+	}
+
+	.contained.warning:focus,
+	.icon_contained.warning:focus {
+		--button-bg-color: var(--focus-warning-color);
+	}
+
+	.contained.error:focus,
+	.icon_contained.error:focus {
+		--button-bg-color: var(--focus-failure-color);
+	}
+
+	.contained.current:focus,
+	.icon_contained.current:focus {
+		--button-bg-color: currentcolor;
+	}
+
+
+	.outlined.primary:focus,
+	.icon_outlined.primary:focus {
+		--button-color: var(--focus-brand-color);
+	}
+
+	.outlined.info:focus,
+	.icon_outlined.info:focus {
+		--button-color: var(--focus-info-color);
+	}
+
+	.outlined.success:focus,
+	.icon_outlined.success:focus {
+		--button-color: var(--focus-success-color);
+	}
+
+	.outlined.warning:focus,
+	.icon_outlined.warning:focus {
+		--button-color: var(--focus-warning-color);
+	}
+
+	.outlined.error:focus,
+	.icon_outlined.error:focus {
+		--button-color: var(--focus-failure-color);
+	}
+
+	.outlined.current:focus,
+	.icon_outlined.current:focus {
+		--button-color: currentcolor;
+	}
+
+
+	/* :active */
+	.button:active {
+		transform: translateY(1px);
+	}
+
+	.outlined:active,
+	.text:active,
+	.icon_outlined:active,
+	.icon_flat:active {
+		--button-bg-color: hsl(from var(--active-brand-color) h s l / 28%);
+		--button-bg-color: var(--active-overlay);
+	}
+
+	.contained.primary:active,
+	.icon_contained.primary:active {
+		--button-bg-color: var(--active-brand-color);
+	}
+
+	.contained.info:active,
+	.icon_contained.info:active {
+		--button-bg-color: var(--active-info-color);
+	}
+
+	.contained.success:active,
+	.icon_contained.success:active {
+		--button-bg-color: var(--active-success-color);
+	}
+
+	.contained.warning:active,
+	.icon_contained.warning:active {
+		--button-bg-color: var(--active-warning-color);
+	}
+
+	.contained.error:active,
+	.icon_contained.error:active {
+		--button-bg-color: var(--active-failure-color);
+	}
+
+	.contained.current:active,
+	.icon_contained.current:active {
+		--button-bg-color: currentcolor;
+	}
+
+
+	/* :disabled */
+	.button:disabled,
+	.button[disabled] {
+		cursor: not-allowed;
+		pointer-events: none;
+	}
+
+	.outlined:disabled,
+	.outlined[disabled],
+	.icon_outlined:disabled,
+	.icon_outlined[disabled] {
+		--button-color: var(--disable-overlay);
+		--button-border-color: var(--divider-color);
+	}
+
+	.contained:disabled,
+	.contained[disabled],
+	.icon_contained:disabled,
+	.icon_contained[disabled] {
+		--button-color: var(--disable-overlay);
+		--button-bg-color: var(--surface-disable-color);
+		--button-shadow: 0;
+	}
+
+	.text:disabled,
+	.text[disabled],
+	.icon_flat:disabled,
+	.icon_flat[disabled] {
+		--button-color: var(--disable-overlay);
+	}
+
+
+	/* .size */
+	.none {
+		--button-padding: 0;
+	}
+
+	.small {
+		composes: button_small from '@/style/typography.module.css';
+	}
+
+	.medium {
+		composes: button_medium from '@/style/typography.module.css';
+	}
+
+	.large {
+		composes: button_large from '@/style/typography.module.css';
+	}
+
+	.none .icon_outlined.none,
+	.icon_contained.none,
+	.icon_flat.none {
+		--button-padding: 0;
+		--button-gap: 0;
+	}
+
+	.small,
+	.icon_outlined.small,
+	.icon_contained.small,
+	.icon_flat.small {
+		--button-padding: calc(var(--padding-unit) * 0.8) calc(var(--padding-unit) * 0.8);
+		--button-gap: 0;
+	}
+
+	.medium,
+	.icon_outlined.medium,
+	.icon_contained.medium,
+	.icon_flat.medium,
+	.icon_outlined,
+	.icon_contained,
+	.icon_flat {
+		--button-padding: calc(var(--padding-unit) * 1) calc(var(--padding-unit) * 1);
+		--button-gap: 0;
+	}
+
+	.large,
+	.icon_outlined.large,
+	.icon_contained.large,
+	.icon_flat.large {
+		--button-padding: calc(var(--padding-unit) * 1.2) calc(var(--padding-unit) * 1.2);
+		--button-gap: 0;
+	}
+
+
+	.none,
+	.outlined.none,
+	.text.none,
+	.contained.none {
+		--button-padding: 0;
+		--button-gap: calc(var(--spacing-unit) * .5);
+	}
+
+	.small,
+	.outlined.small,
+	.text.small,
+	.contained.small {
+		--button-padding: calc(var(--padding-unit) * .2) calc(var(--padding-unit) * .8);
+		--button-gap: calc(var(--spacing-unit) * .5);
+	}
+
+	.medium,
+	.outlined.medium,
+	.text.medium,
+	.contained.medium,
+	.outlined,
+	.text,
+	.contained {
+		--button-padding: calc(var(--padding-unit) * 0.4) calc(var(--padding-unit) * 1.2);
+		--button-gap: calc(var(--spacing-unit) * 1);
+	}
+
+	.large,
+	.outlined.large,
+	.text.large,
+	.contained.large {
+		--button-padding: calc(var(--padding-unit) * 0.8) calc(var(--padding-unit) * 1.4);
+		--button-gap: calc(var(--spacing-unit) * 1.5);
+	}
+}
