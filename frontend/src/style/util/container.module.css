@@ -1,0 +1,19 @@
+.main_content {
+	/* centralize the content on large screens */
+	--available-width: 100%;
+	--content-width: min(var(--available-width), var(--breakpoint-lg));
+	--centering-margin: calc((var(--available-width) - var(--content-width)) * 0.5);
+
+	width: var(--content-width);
+	margin-left: var(--centering-margin);
+	margin-right: var(--centering-margin);
+
+	/* pad the content to not touch the window borders */
+	padding: calc(var(--padding-unit) * 2) calc(var(--padding-unit) * 4);
+}
+
+@media screen and (width < 520px) {
+	.main_content {
+		padding: calc(var(--padding-unit) * 2) calc(var(--padding-unit) * 2);
+	}
+}

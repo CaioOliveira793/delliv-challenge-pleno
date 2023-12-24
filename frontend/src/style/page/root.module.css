@@ -1,0 +1,11 @@
+.main_content {
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: flex-start;
+	align-items: center;
+	gap: calc(var(--spacing-unit) * 4);
+}
+
+.title_container {
+	margin: 30vh 0;
+}

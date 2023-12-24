@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { AppPath } from '@/config/router';
 import { buttonClass } from '@/component/form/ButtonHelper';
-import TopNavbarStyle from '@/component/navigation/TopNavbar/TopNavbar.module.css';
+import TopNavbarStyle from '@/component/app/TopNavbar/TopNavbar.module.css';
 
 export default function TopNavbar() {
 	return (

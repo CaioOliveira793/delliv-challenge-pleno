@@ -1,30 +1,17 @@
-import { AppPath } from '@/config/router';
-import { Link } from 'react-router-dom';
+import TopNavbar from '@/component/app/TopNavbar';
+import TitleContainer from '@/component/app/TitleContainer';
+import ContainerStyle from '@/style/util/container.module.css';
+import RootStyle from '@/style/page/root.module.css';
+import { classes } from '@/style/helper';
 
 export default function Root() {
 	return (
-		<main id="root">
-			<nav>
-				<ul>
-					<li>
-						<Link to={AppPath.SignIn}>Entrar</Link>
-					</li>
-					<li>
-						<Link to={AppPath.SignUp}>Criar conta</Link>
-					</li>
-				</ul>
-			</nav>
-
-			<div>
-				<h1>Order Tracker</h1>
-				<p>Seu app de rastreamento de pedidos.</p>
-			</div>
-
-			<section id="example-interface">
-				<div>TODO: example interface 1</div>
-
-				<div>TODO: example interface 2</div>
-			</section>
+		<main id="root" className={classes(RootStyle.main_content, ContainerStyle.main_content)}>
+			<TopNavbar />
+			<TitleContainer
+				message="Seu app de rastreamento de pedidos."
+				className={RootStyle.title_container}
+			/>
 		</main>
 	);
 }
