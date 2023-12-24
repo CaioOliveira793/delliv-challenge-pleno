@@ -2,8 +2,8 @@ import { createBrowserRouter } from 'react-router-dom';
 import Root from '@/page/Root';
 import ErrorSurface from '@/page/ErrorSurface';
 import NotFound from '@/page/NotFound';
-import SignIn from '@/page/SignIn';
-import SignUp from '@/page/SignUp';
+import SignIn from '@/page/auth/SignIn';
+import SignUp from '@/page/auth/SignUp';
 import SearchOrder from '@/page/order/SearchOrder';
 import OrderSurface from '@/page/order/OrderSurface';
 
