@@ -20,7 +20,7 @@ export type CreateUserError =
 	| ResultType<ResponseType.UNAUTHORIZED, UnauthorizedError>
 	| ResultType<ResponseType.API_ERROR, ApiError>;
 
-export type CreateUserOk = ResultType<ResponseType.CREATED, User>;
+export type CreateUserOk = ResultType<ResponseType.CREATED, SignedUser>;
 
 export type CreateUserResponse = CreateUserOk | CreateUserError;
 
@@ -76,7 +76,7 @@ export async function authenticateUser(data: UserCredential): Promise<Authentica
 }
 
 export type GetAuthenticatedUserResponse =
-	| ResultType<ResponseType.OK, SignedUser>
+	| ResultType<ResponseType.OK, User>
 	| ResultType<ResponseType.UNAUTHORIZED, UnauthorizedError>
 	| ResultType<ResponseType.API_ERROR, ApiError>;
 

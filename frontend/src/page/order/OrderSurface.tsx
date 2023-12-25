@@ -1,20 +1,20 @@
 import { Link, useLoaderData } from 'react-router-dom';
 import { AppPath } from '@/config/router';
-import DeliveryEventDisplay, {
-	DeliveryEvent,
-} from '@/component/delivery_event/DeliveryEventDisplay';
-import OrderDisplay, { Order } from '@/component/order/OrderDisplay';
+import DeliveryEventDisplay from '@/component/delivery_event/DeliveryEventDisplay';
+import OrderDisplay from '@/component/order/OrderDisplay';
 import TopBar from '@/component/app/TopBar';
 import Button from '@/component/form/Button';
 import { classes } from '@/style/helper';
 import ContainerStyle from '@/style/util/container.module.css';
 import TypographyStyle from '@/style/typography.module.css';
 import OrderSurfaceStyle from '@/style/page/order/OrderSurface.module.css';
+import { DeliveryEvent, Order } from '@/service/Resource';
 
 const FAKE_ORDER: Order = {
 	id: '1',
 	created: new Date(),
 	updated: new Date('2023-12-29T16:56:34.470Z'),
+	creator_id: '1',
 	status: 'Entregue',
 	customer_name: 'Yasmin Alana',
 	delivery_address: 'Rua Artur de Barros, n 829, Aclimação, Uberlândia, MG',
