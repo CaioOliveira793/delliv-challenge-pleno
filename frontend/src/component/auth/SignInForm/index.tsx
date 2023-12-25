@@ -34,12 +34,10 @@ export default function SignInForm({
 
 			{formErrors.length !== 0 ? <ErrorList errors={formErrors} /> : null}
 
-			{footer ? (
-				<div className={FormStyle.form_footer}>
-					{footer}
-					<div className={FormStyle.form_action}>{children}</div>
-				</div>
-			) : null}
+			<div className={FormStyle.form_footer}>
+				{footer}
+				<div className={FormStyle.form_action}>{children}</div>
+			</div>
 		</form>
 	);
 }
