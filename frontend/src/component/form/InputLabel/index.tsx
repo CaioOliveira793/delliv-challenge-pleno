@@ -11,9 +11,9 @@ export interface InputLabelProps
 	extends InputLabelStrictProps,
 		LabelHTMLAttributes<HTMLLabelElement> {}
 
-export default function InputLabel({ asterisk = false, label = '' }: InputLabelProps) {
+export default function InputLabel({ asterisk = false, label = '', ...props }: InputLabelProps) {
 	return (
-		<label className={TypographyStyle.body2}>
+		<label className={TypographyStyle.body2} {...props}>
 			{asterisk ? label + ' ' : label}
 			{asterisk ? <span className={InputLabelStyle.asterisk}>*</span> : null}
 		</label>

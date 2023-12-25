@@ -1,5 +1,6 @@
 import { FormHTMLAttributes, ReactNode } from 'react';
-import ErrorMessageList from '@/component/form/ErrorMessageList';
+import ErrorList from '@/component/form/ErrorList';
+import TextInput from '@/component/form/TextInput';
 import { classes } from '@/style/helper';
 import FormStyle from '@/style/form/form.module.css';
 
@@ -21,17 +22,17 @@ export default function SignInForm({
 		<form id="signin-form" className={classes(FormStyle.form, className)}>
 			{header ? <div className={FormStyle.form_header}>{header}</div> : null}
 
-			{/* <TextInput
+			<TextInput
 				label="E-mail"
 				type="email"
-				inputmode="email"
-				autocomplete="email"
+				inputMode="email"
+				autoComplete="email"
 				required
 				fullwidth
-			/> */}
-			{/* <TextInput label="Senha" type="password" autocomplete="current-password" required fullwidth /> */}
+			/>
+			<TextInput label="Senha" type="password" autoComplete="current-password" required fullwidth />
 
-			{formErrors.length !== 0 ? <ErrorMessageList errors={formErrors} /> : null}
+			{formErrors.length !== 0 ? <ErrorList errors={formErrors} /> : null}
 
 			{footer ? (
 				<div className={FormStyle.form_footer}>

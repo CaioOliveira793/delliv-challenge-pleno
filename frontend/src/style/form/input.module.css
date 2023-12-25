@@ -43,8 +43,8 @@
 		fill: var(--input-color);
 	}
 
-	.input[invalid],
-	.input[invalid]:hover {
+	.input[data-style-invalid],
+	.input[data-style-invalid]:hover {
 		--input-border-color: var(--failure-color);
 		--input-color: var(--failure-color);
 	}
@@ -54,19 +54,19 @@
 	}
 
 	.input:focus-within,
-	.input[focused] {
+	.input[data-style-focused] {
 		--input-border-color: var(--brand-color);
 		--input-outline: 1px solid var(--brand-color);
 	}
 
 	.input:disabled,
-	.input[disabled],
+	.input[data-style-disabled],
 	.input input:disabled {
 		cursor: not-allowed;
 		--input-color: var(--disable-overlay);
 	}
 
-	.input[fullwidth] {
+	.input[data-style-fullwidth] {
 		width: 100%;
 	}
 
@@ -79,7 +79,7 @@
 
 	/* TODO: improve input outlined styles */
 	.outlined:disabled,
-	.outlined[disabled],
+	.outlined[data-style-disabled],
 	.outlined input:disabled {
 		--input-border-color: var(--disable-overlay);
 	}
@@ -91,7 +91,7 @@
 
 	/* TODO: improve input disabled bg color */
 	.contained:disabled,
-	.contained[disabled],
+	.contained[data-style-disabled],
 	.contained input:disabled {
 		--input-bg-color: var(--disable-overlay);
 		--input-border-color: transparent;
