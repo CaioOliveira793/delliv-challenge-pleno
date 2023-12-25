@@ -13,7 +13,6 @@ export interface FormStrictProps {
 export interface FormProps extends FormStrictProps, FormHTMLAttributes<HTMLFormElement> {}
 
 export interface BaseFormProps extends FormHTMLAttributes<HTMLFormElement> {
-	errors?: string[];
 	header?: ReactNode;
 	footer?: ReactNode;
 }
