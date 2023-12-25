@@ -1,16 +1,8 @@
+import { User } from '@/service/Resource';
 import Logo from '@/component/app/Logo';
 import Button from '@/component/form/Button';
 import TypographyStyle from '@/style/typography.module.css';
 import TopBarStyle from './TopBar.module.css';
-
-interface User {
-	id: string;
-	created: Date;
-	updated: Date;
-	name: string;
-	email: string;
-	last_authentication: Date;
-}
 
 const FAKE_USER: User = {
 	id: '123',

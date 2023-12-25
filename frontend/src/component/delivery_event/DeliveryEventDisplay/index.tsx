@@ -1,15 +1,7 @@
+import { DeliveryEvent } from '@/service/Resource';
 import { ShortDateTimeFormatter } from '@/formatter/DateTimeFormatter';
 import TypographyStyle from '@/style/typography.module.css';
 import DeliveryEventDisplayStyle from './DeliveryEventDisplay.module.css';
-
-export interface DeliveryEvent {
-	id: string;
-	created: Date;
-	creator_id: string;
-	order_id: string;
-	status: string;
-	message: string | null;
-}
 
 export interface DeliveryEventDisplayProps {
 	event: DeliveryEvent;

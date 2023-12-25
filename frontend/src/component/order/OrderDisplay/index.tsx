@@ -1,17 +1,9 @@
 import { Link } from 'react-router-dom';
+import { Order } from '@/service/Resource';
 import { AppPath } from '@/config/router';
 import { formatTimeMetadata } from '@/formatter/DateTimeFormatter';
 import TypographyStyle from '@/style/typography.module.css';
 import OrderDisplayStyle from './OrderDisplay.module.css';
-
-export interface Order {
-	id: string;
-	created: Date;
-	updated: Date;
-	status: string;
-	customer_name: string;
-	delivery_address: string;
-}
 
 interface OrderDisplayProps {
 	order: Order;
