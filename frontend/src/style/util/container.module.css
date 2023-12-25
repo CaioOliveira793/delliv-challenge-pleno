@@ -17,3 +17,11 @@
 		padding: calc(var(--padding-unit) * 2) calc(var(--padding-unit) * 2);
 	}
 }
+
+.content_not_found {
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: center;
+	align-items: center;
+	gap: calc(var(--spacing-unit) * 2);
+}

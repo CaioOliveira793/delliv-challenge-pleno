@@ -8,20 +8,26 @@
 	gap: calc(var(--spacing-unit) * 4);
 }
 
-.search_form {
-	display: flex;
-	flex-flow: row nowrap;
-	justify-content: start;
-	align-items: center;
-
-	width: 100%;
+.update_button {
+	align-self: end;
 }
 
-.order_list {
+.event_history_section {
 	display: flex;
 	flex-flow: column nowrap;
 	justify-content: start;
 	align-items: start;
 
 	width: 100%;
+	gap: calc(var(--spacing-unit) * 2);
+}
+
+.event_list {
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: start;
+	align-items: start;
+
+	width: 100%;
+	gap: calc(var(--spacing-unit) * 1.5);
 }
