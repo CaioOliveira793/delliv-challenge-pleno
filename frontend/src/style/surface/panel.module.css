@@ -1,0 +1,21 @@
+@layer module {
+	.panel {
+		--panel-spacing: calc(var(--padding-unit) * 1);
+
+		border-radius: var(--border-radius-unit);
+		background-color: var(--surface-color-2);
+		padding: var(--panel-spacing);
+	}
+
+	.panel.small {
+		--panel-spacing: calc(var(--padding-unit) * 1.5);
+	}
+
+	.panel.medium {
+		--panel-spacing: calc(var(--padding-unit) * 2);
+	}
+
+	.panel.large {
+		--panel-spacing: calc(var(--padding-unit) * 3);
+	}
+}

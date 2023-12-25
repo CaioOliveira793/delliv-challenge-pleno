@@ -1,0 +1,15 @@
+.container {
+	composes: panel medium from '@/style/surface/panel.module.css';
+
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: start;
+	align-items: start;
+
+	width: 100%;
+	gap: calc(var(--spacing-unit) * 1.5);
+}
+
+.order_link {
+	align-self: end;
+}
