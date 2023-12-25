@@ -1,3 +1,4 @@
+import { nanoid } from 'nanoid';
 import { HTMLAttributes, ReactNode } from 'react';
 import InputLabel, { InputLabelStrictProps } from '@/component/form/InputLabel';
 import ErrorList from '@/component/form/ErrorList';
@@ -5,7 +6,6 @@ import Input, { InputProps } from '@/component/form/Input';
 import TypographyStyle from '@/style/typography.module.css';
 import InputStyle from '@/style/form/input.module.css';
 import { classes } from '@/style/helper';
-import { nanoid } from 'nanoid';
 
 export interface TextInputProps extends InputLabelStrictProps, InputProps {
 	errors?: string[];

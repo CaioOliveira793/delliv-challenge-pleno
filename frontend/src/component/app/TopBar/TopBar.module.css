@@ -1,0 +1,17 @@
+.container {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-between;
+	align-items: center;
+
+	width: 100%;
+}
+
+.user_container {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: start;
+	align-items: center;
+
+	gap: calc(var(--spacing-unit) * 2);
+}
