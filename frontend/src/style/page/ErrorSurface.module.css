@@ -1,0 +1,12 @@
+.container {
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: start;
+	align-items: start;
+	gap: calc(var(--spacing-unit) * 1.5);
+}
+
+.error_paragraph {
+	font-family: var(--font-family-monospace);
+	margin: calc(var(--margin-unit) * 2) 0;
+}
