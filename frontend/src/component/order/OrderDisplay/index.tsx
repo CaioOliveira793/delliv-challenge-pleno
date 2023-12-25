@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { AppPath } from '@/config/router';
+import { formatTimeMetadata } from '@/formatter/DateTimeFormatter';
 import TypographyStyle from '@/style/typography.module.css';
 import OrderDisplayStyle from './OrderDisplay.module.css';
 
@@ -37,6 +38,7 @@ export default function OrderDisplay({ order, show_id = true }: OrderDisplayProp
 				<span className={TypographyStyle.attr_name}>Endereço de entrega: </span>
 				<span className={TypographyStyle.attr_value}>{order.delivery_address}</span>
 			</p>
+			<p className={TypographyStyle.caption}>{formatTimeMetadata(order.created, order.updated)}</p>
 		</div>
 	);
 }
