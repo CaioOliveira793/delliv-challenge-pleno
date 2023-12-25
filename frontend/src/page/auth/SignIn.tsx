@@ -4,7 +4,7 @@ import Button from '@/component/form/Button';
 import TopSignAction from '@/component/auth/TopSignAction';
 import TypographyStyle from '@/style/typography.module.css';
 import ContainerStyle from '@/style/util/container.module.css';
-import SignInStyle from '@/style/page/auth/SignIn.module.css';
+import SignStyle from '@/style/page/Sign.module.css';
 
 export default function SignIn() {
 	return (
@@ -18,10 +18,10 @@ export default function SignIn() {
 			</TopSignAction>
 
 			<SignInForm
-				className={SignInStyle.signin_form}
+				className={SignStyle.sign_form}
 				header={<p className={TypographyStyle.subtitle}>Sign-In</p>}
 			>
-				<Button>Entrar</Button>
+				<Button type="submit">Entrar</Button>
 			</SignInForm>
 		</main>
 	);

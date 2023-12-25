@@ -1,0 +1,8 @@
+.sign_form {
+	display: flex;
+	flex-flow: column nowrap;
+
+	max-width: var(--breakpoint-sm);
+	width: 100%;
+	margin: 20vh auto;
+}
