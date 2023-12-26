@@ -1,4 +1,4 @@
-FROM docker.io/library/httpd:2.4.58-bookworm as build
+FROM docker.io/library/node:20.10-bullseye-slim as build
 
 WORKDIR /home/app
 
