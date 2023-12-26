@@ -12,6 +12,7 @@ import { DeliveryModule } from '@/module/delivery/DeliveryModule';
 		ConfigModule.forRoot(createGlobalConfigOptions()),
 		SharedModule,
 		IamModule,
+		DeliveryModule,
 		RouterModule.register([
 			{ path: 'iam', module: IamModule },
 			{ path: 'delivery', module: DeliveryModule },
