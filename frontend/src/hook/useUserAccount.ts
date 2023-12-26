@@ -85,9 +85,9 @@ export function useUserAccountUnwraped(): SignedUser | null {
 	const [state, setState] = useState<SignedUser | null>(null);
 
 	useEffect(() => {
-		if (userAccount.state === null) {
-			userAccount.signOut(globalThis.location.pathname);
-			setState(null);
+		const currentPath = globalThis.location.pathname;
+		if (userAccount.state === null && currentPath !== AppPath.SignIn) {
+			userAccount.signOut(currentPath);
 		}
 		setState(userAccount.state);
 	}, [userAccount]);

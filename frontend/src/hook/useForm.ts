@@ -9,9 +9,9 @@ export interface FormError<T> {
 	message: string;
 }
 
-export type OnSubmit<T> = (data: T) => Array<FormError<T>>;
+export type OnSubmit<T> = (data: T) => Promise<Array<FormError<T>> | null | void>;
 export type OnChange<T> = (data: T, errors: Array<FormError<T>>) => void;
-export type ValidateFn<T> = (data: T) => Array<FormError<T>>;
+export type ValidateFn<T> = (data: T) => Promise<Array<FormError<T>> | null | void>;
 
 export interface UseFormInput<T extends object> {
 	initial?: T;
@@ -23,8 +23,8 @@ export interface UseFormInput<T extends object> {
 export interface UseFormReturn<T extends object> {
 	data: T;
 	errors: Array<FormError<T>>;
-	handleChange(event: ChangeEvent<HTMLInputElement>): void;
-	handleSubmit(event: FormEvent<HTMLFormElement>): void;
+	handleChange(event: ChangeEvent<HTMLInputElement>): Promise<void>;
+	handleSubmit(event: FormEvent<HTMLFormElement>): Promise<void>;
 }
 
 export function useForm<T extends object>({
@@ -36,10 +36,10 @@ export function useForm<T extends object>({
 	const [data, setData] = useState<T>(initial ?? ({} as T));
 	const [errors, setErrors] = useState<Array<FormError<T>>>([]);
 
-	function handleChange(event: ChangeEvent<HTMLInputElement>) {
+	async function handleChange(event: ChangeEvent<HTMLInputElement>) {
 		const { name, value } = event.target;
 		const newData = { ...data, [name]: value };
-		const errors = validate?.(newData) ?? [];
+		const errors = (await validate?.(newData)) ?? [];
 
 		onChange?.(newData, errors);
 
@@ -47,9 +47,9 @@ export function useForm<T extends object>({
 		setData(newData);
 	}
 
-	function handleSubmit(event: FormEvent<HTMLFormElement>) {
+	async function handleSubmit(event: FormEvent<HTMLFormElement>) {
 		event.preventDefault();
-		const errors = onSubmit?.(data) ?? [];
+		const errors = (await onSubmit?.(data)) ?? [];
 		setErrors(errors);
 	}
 

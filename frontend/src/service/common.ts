@@ -169,10 +169,19 @@ export const enum ResponseType {
 }
 
 export const enum ApiErrorType {
+	/**
+	 * The server returned a response type not expected by the deserializer.
+	 */
 	UnknownResponse = 'UNKNOWN_RESPONSE',
 	InvalidResponseBody = 'INVALID_RESPONSE_BODY',
+	/**
+	 * The fetch api was called with invalid arguments.
+	 */
 	InvalidFetchCall = 'INVALID_FETCH',
 	Aborted = 'ABORTED',
+	/**
+	 * A network error was encountered.
+	 */
 	NetworkError = 'NETWORK_ERROR',
 	UnknownError = 'UNKNOWN_ERROR',
 }

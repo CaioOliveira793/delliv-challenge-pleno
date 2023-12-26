@@ -5,6 +5,13 @@ export const store = configureStore({
 	reducer: {
 		account: accountReducer,
 	},
+	middleware: getDefaultMiddleware =>
+		getDefaultMiddleware({
+			serializableCheck: {
+				ignoreState: true,
+				ignoreActions: true,
+			},
+		}),
 });
 
 export type RootState = ReturnType<typeof store.getState>;
