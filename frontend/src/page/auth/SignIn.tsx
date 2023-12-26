@@ -9,14 +9,14 @@ import { UserCredential } from '@/service/Resource';
 import { useUserAccount } from '@/hook/useUserAccount';
 import { handleAuthenticateUserError } from '@/error/UserErrorHandler';
 import { ResponseType } from '@/service/common';
-import { useSignInNavigation } from '@/hook/useSignInNavigation';
+import { useSignedUserNavigation } from '@/hook/useSignedUserNavigation';
 import { FormError } from '@/hook/useForm';
 
 const INITIAL_USER_CREDENTIAL: UserCredential = { email: '', password: '' };
 
 export default function SignIn() {
 	const userAccount = useUserAccount();
-	const signInNavigate = useSignInNavigation();
+	const signInNavigate = useSignedUserNavigation();
 
 	async function signInUser(data: UserCredential): Promise<FormError<UserCredential>[] | void> {
 		const response = await userAccount.signIn(data);

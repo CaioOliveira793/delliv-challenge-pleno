@@ -31,8 +31,8 @@ export default function SignInForm({
 			{...props}
 		>
 			<TextInput
-				label="E-mail"
 				name="email"
+				label="E-mail"
 				type="email"
 				inputMode="email"
 				autoComplete="email"
@@ -42,8 +42,8 @@ export default function SignInForm({
 				onChange={handleChange}
 			/>
 			<TextInput
-				label="Senha"
 				name="password"
+				label="Senha"
 				type="password"
 				autoComplete="current-password"
 				required

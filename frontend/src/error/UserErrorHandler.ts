@@ -1,8 +1,9 @@
 import { FORM_ERROR_FIELD, FormError } from '@/hook/useForm';
-import { UserCredential } from '@/service/Resource';
+import { CreateUserData, UserCredential } from '@/service/Resource';
 import { ResponseType, UnauthorizedType } from '@/service/common';
-import { AuthenticateUserError } from '@/service/iam';
-import { handleApiError } from './ApiErrorHandler';
+import { AuthenticateUserError, CreateUserError } from '@/service/iam';
+import { handleApiError } from '@/error/ApiErrorHandler';
+import { alreadyExists } from '@/formatter/ValidationMessage';
 
 export function handleAuthenticateUserError(
 	result: AuthenticateUserError
@@ -31,4 +32,29 @@ export function handleAuthenticateUserError(
 	}
 
 	return [{ field: FORM_ERROR_FIELD, message: 'sign-in inválido' }];
+}
+
+export type SignOutFn = () => void;
+
+export function handleCreateUserError(
+	result: CreateUserError,
+	signOutFn: SignOutFn
+): Array<FormError<CreateUserData>> | void {
+	switch (result.type) {
+		case ResponseType.UNAUTHORIZED: {
+			signOutFn();
+			return;
+		}
+
+		case ResponseType.CONFLICT: {
+			if (result.value.resource.path === '.email') {
+				return [{ field: 'email', message: alreadyExists('e-mail') }];
+			}
+			return [{ field: FORM_ERROR_FIELD, message: alreadyExists('usuário') }];
+		}
+
+		case ResponseType.API_ERROR: {
+			handleApiError(result.value);
+		}
+	}
 }

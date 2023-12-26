@@ -59,7 +59,7 @@ export function useUserAccount(): UseUserAccountReturn {
 		return result;
 	}
 
-	function signOut(redirectPath?: string) {
+	function signOut(redirectPath: string = globalThis.location.pathname) {
 		const path = redirectPath ? AppPath.SignIn + '?redirect_to=' + redirectPath : AppPath.SignIn;
 		navigate(path, { replace: false });
 	}

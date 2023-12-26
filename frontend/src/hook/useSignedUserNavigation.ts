@@ -3,9 +3,9 @@ import { AppPath } from '@/config/router';
 
 export const REDIRECT_QUERY_PARAM = 'redirect_to';
 
-export type SignInNavigate = () => void;
+export type SignedNavigate = () => void;
 
-export function useSignInNavigation(): SignInNavigate {
+export function useSignedUserNavigation(): SignedNavigate {
 	const navigate = useNavigate();
 	const location = useLocation();
 
