@@ -1,6 +1,6 @@
 FROM docker.io/library/node:20.10-bullseye-slim as development
 
-WORKDIR /home/node
+WORKDIR /home/app
 
 ENV NODE_ENV=development
 
@@ -10,4 +10,4 @@ RUN npm install --include=prod --include=dev
 
 COPY ./ ./
 
-CMD npm run db:migrate && npm run start:dev
+CMD npm run start:dev

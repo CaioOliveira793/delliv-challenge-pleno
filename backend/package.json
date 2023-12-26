@@ -27,6 +27,7 @@
 		"build": "run-z build:src,build:prisma",
 		"build:src": "rollup --config rollup.config.js",
 		"build:prisma": "prisma generate",
+		"db:migrate": "prisma migrate dev",
 		"test": "jest",
 		"test:cov": "jest --coverage",
 		"test:full-cov": "jest --coverage --collectCoverageFrom '<rootDir>/src/**/*'",

@@ -1,0 +1,63 @@
+version: '3.7'
+
+services:
+  postgres_db:
+    container_name: postgres_db
+    image: docker.io/library/postgres:16-bullseye
+    networks:
+    - default
+    environment:
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: ${DATABASE_NAME}
+      PGDATA: "/var/lib/postgresql/data"
+    volumes:
+    - postgres_data:/var/lib/postgresql/data
+    ports:
+    - 5432:5432
+
+  challenge_server:
+    container_name: challenge_server
+    image: challenge-service-dev
+    build:
+      context: ./backend
+      target: development
+      dockerfile: ./dev.dockerfile
+    depends_on:
+    - postgres_db
+    networks:
+    - default
+    environment:
+      PORT: ${PORT}
+      TOKEN_SECRET: ${TOKEN_SECRET}
+      TOKEN_EXPIRATION: ${TOKEN_EXPIRATION}
+      DATABASE_URL: postgres://${DATABASE_USER}:${DATABASE_PASSWORD}@postgres_db:5432/${DATABASE_NAME}
+    volumes:
+    - ./backend:/home/node
+    ports:
+    - ${PORT}:${PORT}
+
+  challenge_app:
+    container_name: challenge_app
+    image: challenge-app-dev
+    build:
+      context: ./frontend
+      target: development
+      dockerfile: ./dev.dockerfile
+    depends_on:
+    - challenge_server
+    networks:
+    - default
+    environment:
+      APP_DOMAIN: localhost:${APP_PORT}
+      APP_API_ADDRESS: http://localhost:${PORT}
+    volumes:
+    - ./frontend:/home/app
+    ports:
+    - ${APP_PORT}:${APP_PORT}
+
+networks:
+  default: {}
+
+volumes:
+  postgres_data: null
