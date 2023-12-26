@@ -77,7 +77,6 @@
 		--input-bg-color: var(--surface-color-1);
 	}
 
-	/* TODO: improve input outlined styles */
 	.outlined:disabled,
 	.outlined[data-style-disabled],
 	.outlined input:disabled {
@@ -89,7 +88,6 @@
 		--input-border-color: var(--input-bg-color);
 	}
 
-	/* TODO: improve input disabled bg color */
 	.contained:disabled,
 	.contained[data-style-disabled],
 	.contained input:disabled {

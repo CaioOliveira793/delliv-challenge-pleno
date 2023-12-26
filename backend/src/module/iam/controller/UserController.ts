@@ -24,8 +24,6 @@ export class UserController {
 		return this.createUserService.execute(data);
 	}
 
-	// TODO: add route to update the user
-
 	@Get('me')
 	@HttpCode(HttpStatus.OK)
 	public async getLoggedUser(
