@@ -5,13 +5,13 @@ import TopBarStyle from './TopBar.module.css';
 import { useUserAccountUnwraped } from '@/hook/useUserAccount';
 
 export default function TopBar() {
-	const state = useUserAccountUnwraped();
+	const userAccount = useUserAccountUnwraped();
 
-	return state ? (
+	return userAccount.state ? (
 		<div className={TopBarStyle.container}>
 			<Logo />
 			<div className={TopBarStyle.user_container}>
-				<p className={TypographyStyle.body2}>{state.user.name}</p>
+				<p className={TypographyStyle.body2}>{userAccount.state.user.name}</p>
 				<hr />
 				<Button variant="outlined">SignOut</Button>
 			</div>

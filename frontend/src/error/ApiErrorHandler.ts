@@ -1,5 +1,7 @@
 import { ApiError, ApiErrorType } from '@/service/common';
 
+export type SignOutFn = () => void;
+
 // TODO: replace alert for a user notification system
 
 export function handleApiError(error: ApiError): void {

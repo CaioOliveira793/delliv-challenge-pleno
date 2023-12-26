@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { APIContext } from '@/context/APIContext';
 import { AppPath } from '@/config/router';
@@ -80,17 +80,15 @@ export function useUserAccount(): UseUserAccountReturn {
 /**
  * Unwrap the user account state signing out in case the user is not authenticated.
  */
-export function useUserAccountUnwraped(): SignedUser | null {
+export function useUserAccountUnwraped(): UseUserAccountReturn {
 	const userAccount = useUserAccount();
-	const [state, setState] = useState<SignedUser | null>(null);
 
 	useEffect(() => {
 		const currentPath = globalThis.location.pathname;
 		if (userAccount.state === null && currentPath !== AppPath.SignIn) {
 			userAccount.signOut(currentPath);
 		}
-		setState(userAccount.state);
 	}, [userAccount]);
 
-	return state;
+	return userAccount;
 }

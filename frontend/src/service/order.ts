@@ -75,7 +75,7 @@ export type ListOrderError =
 	| ResultType<ResponseType.UNAUTHORIZED, UnauthorizedError>
 	| ResultType<ResponseType.API_ERROR, ApiError>;
 
-export type ListOrderOk = ResultType<ResponseType.OK, SignedUser>;
+export type ListOrderOk = ResultType<ResponseType.OK, Array<Order>>;
 
 export type ListOrderResponse = ListOrderOk | ListOrderError;
 

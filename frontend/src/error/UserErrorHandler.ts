@@ -2,7 +2,7 @@ import { FORM_ERROR_FIELD, FormError } from '@/hook/useForm';
 import { CreateUserData, UserCredential } from '@/service/Resource';
 import { ResponseType, UnauthorizedType } from '@/service/common';
 import { AuthenticateUserError, CreateUserError } from '@/service/iam';
-import { handleApiError } from '@/error/ApiErrorHandler';
+import { SignOutFn, handleApiError } from '@/error/ApiErrorHandler';
 import { alreadyExists } from '@/formatter/ValidationMessage';
 
 export function handleAuthenticateUserError(
@@ -33,8 +33,6 @@ export function handleAuthenticateUserError(
 
 	return [{ field: FORM_ERROR_FIELD, message: 'sign-in inválido' }];
 }
-
-export type SignOutFn = () => void;
 
 export function handleCreateUserError(
 	result: CreateUserError,
